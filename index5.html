@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เว็บฝึกภาษาอังกฤษ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .letter-display {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .hover-scale {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .practice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .practice-container {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+
+<body class="gradient-bg min-h-screen p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- Main Menu -->
+        <div id="mainMenu" class="text-center">
+            <h1 class="text-5xl font-bold text-white mb-4">🎓 เว็บฝึกภาษาอังกฤษ</h1>
+            <p class="text-white/80 text-xl mb-12">เลือกแบบฝึกหัดที่ต้องการ</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Exercise 1 (New) -->
+                <div class="bg-white rounded-3xl card-shadow p-8 hover-scale cursor-pointer" onclick="startExercise1()">
+                    <div class="text-6xl mb-4">🔤</div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">แบบฝึกหัดที่ 1</h2>
+                    <p class="text-gray-600 mb-6">เรียนรู้ตัวอักษรภาษาอังกฤษ</p>
+                    <div
+                        class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full font-semibold">
+                        เริ่มฝึก
+                    </div>
+                </div>
+
+                <!-- Exercise 2 (Previously Exercise 1) -->
+                <div class="bg-white rounded-3xl card-shadow p-8 hover-scale cursor-pointer" onclick="startExercise2()">
+                    <div class="text-6xl mb-4">📚</div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">แบบฝึกหัดที่ 2</h2>
+                    <p class="text-gray-600 mb-6">ฝึกอ่านพยัญชนะ + สระ</p>
+                    <div
+                        class="bg-gradient-to-r from-green-500 to-teal-600 text-white px-6 py-3 rounded-full font-semibold">
+                        เริ่มฝึก
+                    </div>
+                </div>
+
+                <!-- Exercise 3 (Previously Exercise 2) -->
+                <div class="bg-white rounded-3xl card-shadow p-8 hover-scale cursor-pointer" onclick="startExercise3()">
+                    <div class="text-6xl mb-4">📖</div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">แบบฝึกหัดที่ 3</h2>
+                    <p class="text-gray-600 mb-6">ฝึกอ่านพยัญชนะ + สระ + ตัวสะกด</p>
+                    <div
+                        class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-full font-semibold">
+                        เริ่มฝึก
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 1 Content (New) -->
+        <div id="exercise1" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full mb-4 transition-colors">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-4xl font-bold text-white mb-2">🔤 แบบฝึกหัดที่ 1</h1>
+                <p class="text-white/80 text-lg">เรียนรู้ตัวอักษรภาษาอังกฤษและการออกเสียง</p>
+            </div>
+
+            <!-- Main Card -->
+            <div class="bg-white rounded-3xl card-shadow p-8 mb-6">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">ตัวอักษรภาษาอังกฤษ</h2>
+                    <p class="text-gray-600">เรียนรู้ตัวอักษรภาษาอังกฤษและตัวแทนในภาษาไทย</p>
+                </div>
+
+                <!-- Practice Section -->
+                <div class="practice-container mb-6">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 w-full md:w-1/2">
+                        <div class="text-6xl font-bold text-white letter-display mb-4" id="practiceLetter">A</div>
+                        <p class="text-white/90 text-lg mb-2">ตัวอักษรภาษาอังกฤษ</p>
+                        <button onclick="nextPracticeLetter()"
+                            class="bg-white/20 hover:bg-white/30 text-white px-6 py-2 rounded-full transition-colors">
+                            ตัวอักษรถัดไป
+                        </button>
+                    </div>
+                    <div class="bg-gradient-to-br from-pink-500 to-red-500 rounded-2xl p-8 w-full md:w-1/2">
+                        <div class="text-4xl font-bold text-white mb-4" id="practiceThai">แทน "อ"</div>
+                        <p class="text-white/90 text-lg mb-2">ตัวแทนในภาษาไทย</p>
+                        <button onclick="playLetterSound()"
+                            class="bg-white/20 hover:bg-white/30 text-white px-6 py-2 rounded-full transition-colors mt-4 pulse-animation">
+                            🔊 ฟังเสียงภาษาอังกฤษ
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-white">
+                <h3 class="text-xl font-semibold mb-3">วิธีใช้งาน:</h3>
+                <ul class="space-y-2 text-white/90">
+                    <li>• ใช้ส่วนฝึกออกเสียงเพื่อเรียนรู้ตัวอักษรภาษาอังกฤษ</li>
+                    <li>• ด้านซ้ายแสดงตัวอักษรภาษาอังกฤษ</li>
+                    <li>• ด้านขวาแสดงตัวแทนในภาษาไทย</li>
+                    <li>• กดปุ่ม "ตัวอักษรถัดไป" เพื่อเปลี่ยนตัวอักษร</li>
+                    <li>• กดปุ่ม "ฟังเสียงภาษาอังกฤษ" เพื่อฟังการออกเสียงภาษาอังกฤษ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Exercise 2 Content (Previously Exercise 1) -->
+        <div id="exercise2" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full mb-4 transition-colors">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-4xl font-bold text-white mb-2">📚 แบบฝึกหัดที่ 2</h1>
+                <p class="text-white/80 text-lg">คลิกที่ตัวอักษรหรือสระเพื่อเปลี่ยน หรือพิมพ์เพื่อเลือกตัวอักษรโดยตรง
+                </p>
+            </div>
+
+            <!-- Main Card -->
+            <div class="bg-white rounded-3xl card-shadow p-8 mb-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <!-- Consonant Section -->
+                    <div class="text-center">
+                        <h2 class="text-2xl font-semibold text-gray-700 mb-4">พยัญชนะ (Consonant)</h2>
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-8 hover-scale cursor-pointer"
+                            onclick="nextConsonant()">
+                            <div class="text-8xl font-bold text-white letter-display mb-2" id="consonant">A</div>
+                            <div class="text-white/90 text-lg mb-1" id="consonant-thai">แทน "อ"</div>
+                            <div class="text-white/80 text-sm">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+
+                    <!-- Vowel Section -->
+                    <div class="text-center">
+                        <h2 class="text-2xl font-semibold text-gray-700 mb-4">สระ (Vowel)</h2>
+                        <div class="bg-gradient-to-br from-pink-500 to-red-500 rounded-2xl p-8 hover-scale cursor-pointer"
+                            onclick="nextVowel()">
+                            <div class="text-8xl font-bold text-white letter-display mb-2" id="vowel">A</div>
+                            <div class="text-white/90 text-lg mb-1" id="vowel-thai">แทน "อะ"</div>
+                            <div class="text-white/80 text-sm">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combined Display -->
+                <div class="mt-8 text-center">
+                    <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 mb-4">
+                        <div class="text-6xl font-bold text-white letter-display mb-2" id="combined">AA</div>
+                        <div class="text-white/80 text-xl">คำที่เกิดขึ้น</div>
+                    </div>
+
+                    <!-- Pronunciation -->
+                    <div class="bg-gray-50 rounded-xl p-4 mb-4">
+                        <div class="text-2xl font-semibold text-gray-700 mb-2">การออกเสียง</div>
+                        <div class="text-3xl text-blue-600 font-medium" id="pronunciation">อา</div>
+                    </div>
+
+                    <!-- Play Sound Button -->
+                    <button onclick="playSound()"
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-xl hover-scale transition-colors duration-200 pulse-animation">
+                        🔊 ฟังเสียง
+                    </button>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-white">
+                <h3 class="text-xl font-semibold mb-3">วิธีใช้งาน:</h3>
+                <ul class="space-y-2 text-white/90">
+                    <li>• คลิกที่ตัวอักษรหรือสระเพื่อเปลี่ยนเป็นตัวถัดไป</li>
+                    <li>• พิมพ์ตัวอักษร A-Z เพื่อเลือกตัวอักษรโดยตรง</li>
+                    <li>• กดปุ่ม "ฟังเสียง" เพื่อฟังการออกเสียง</li>
+                    <li>• ดูการออกเสียงเป็นภาษาไทยด้านล่าง</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Exercise 3 Content (Previously Exercise 2) -->
+        <div id="exercise3" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-full mb-4 transition-colors">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-4xl font-bold text-white mb-2">📖 แบบฝึกหัดที่ 3</h1>
+                <p class="text-white/80 text-lg">ฝึกอ่านพยัญชนะ + สระ + ตัวสะกด</p>
+            </div>
+
+            <!-- Main Card -->
+            <div class="bg-white rounded-3xl card-shadow p-8 mb-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                    <!-- Consonant Section -->
+                    <div class="text-center">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-4">พยัญชนะ</h2>
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 hover-scale cursor-pointer"
+                            onclick="nextConsonant2()">
+                            <div class="text-6xl font-bold text-white letter-display mb-2" id="consonant2">B</div>
+                            <div class="text-white/90 text-sm mb-1" id="consonant2-thai">แทน "บ"</div>
+                            <div class="text-white/80 text-xs">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+
+                    <!-- Vowel Section -->
+                    <div class="text-center">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-4">สระ</h2>
+                        <div class="bg-gradient-to-br from-pink-500 to-red-500 rounded-2xl p-6 hover-scale cursor-pointer"
+                            onclick="nextVowel2()">
+                            <div class="text-6xl font-bold text-white letter-display mb-2" id="vowel2">A</div>
+                            <div class="text-white/90 text-sm mb-1" id="vowel2-thai">แทน "อะ"</div>
+                            <div class="text-white/80 text-xs">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+
+                    <!-- Final Consonant Section -->
+                    <div class="text-center">
+                        <h2 class="text-xl font-semibold text-gray-700 mb-4">ตัวสะกด</h2>
+                        <div class="bg-gradient-to-br from-orange-500 to-yellow-500 rounded-2xl p-6 hover-scale cursor-pointer"
+                            onclick="nextFinal()">
+                            <div class="text-6xl font-bold text-white letter-display mb-2" id="final">D</div>
+                            <div class="text-white/90 text-sm mb-1" id="final-thai">แทน "ด"</div>
+                            <div class="text-white/80 text-xs">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Type Toggle -->
+                <div class="text-center mt-6 mb-6">
+                    <button onclick="toggleFinalType()"
+                        class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-full font-semibold transition-colors">
+                        <span id="finalTypeText">ตัวสะกด: พยัญชนะ</span> (คลิกเพื่อเปลี่ยน)
+                    </button>
+                </div>
+
+                <!-- Combined Display -->
+                <div class="text-center">
+                    <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl p-6 mb-4">
+                        <div class="text-5xl font-bold text-white letter-display mb-2" id="combined2">BAD</div>
+                        <div class="text-white/80 text-lg">คำที่เกิดขึ้น</div>
+                    </div>
+
+                    <!-- Pronunciation -->
+                    <div class="bg-gray-50 rounded-xl p-4 mb-4">
+                        <div class="text-xl font-semibold text-gray-700 mb-2">การออกเสียง</div>
+                        <div class="text-2xl text-blue-600 font-medium" id="pronunciation2">แบด</div>
+                    </div>
+
+                    <!-- Play Sound Button -->
+                    <button onclick="playSound2()"
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full text-xl hover-scale transition-colors duration-200 pulse-animation">
+                        🔊 ฟังเสียง
+                    </button>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-white">
+                <h3 class="text-xl font-semibold mb-3">วิธีใช้งาน:</h3>
+                <ul class="space-y-2 text-white/90">
+                    <li>• คลิกที่ตัวอักษร สระ หรือตัวสะกดเพื่อเปลี่ยน</li>
+                    <li>• คลิกปุ่ม "ตัวสะกด" เพื่อเปลี่ยนระหว่างพยัญชนะและสระ</li>
+                    <li>• พิมพ์ตัวอักษร A-Z เพื่อเลือกตัวอักษรโดยตรง</li>
+                    <li>• กดปุ่ม "ฟังเสียง" เพื่อฟังการออกเสียง</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <audio id="ttsAudio"></audio>
+
+    <script>
+        // Navigation functions
+        function startExercise1() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.remove('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            updatePracticeLetter();
+        }
+
+        function startExercise2() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.remove('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            updateDisplay();
+        }
+
+        function startExercise3() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.remove('hidden');
+            updateDisplay2();
+        }
+
+        function goToMenu() {
+            document.getElementById('mainMenu').classList.remove('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+        }
+
+        // Exercise 1 variables and functions (New)
+        const alphabetLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const thaiPronunciations = {
+            'A': 'แทน "เอ,เเอ,อะ,อา"', 'B': 'แทน "บ"', 'C': 'แทน "ค,ซ"', 'D': 'แทน "ด,ฏ"', 'E': 'แทน "อิ,อี"',
+            'F': 'แทน "ฟ,ฝ"', 'G': 'แทน "ก,จ"', 'H': 'แทน "ห,ฮ"', 'I': 'แทน "อิ,อี,ไอ"', 'J': 'แทน "จ"',
+            'K': 'แทน "ค,ก"', 'L': 'แทน "ล,ฬ"', 'M': 'แทน "ม"', 'N': 'แทน "น"', 'O': 'แทน "โอ,อ"',
+            'P': 'แทน "ป,พ,ภ,ผ"', 'Q': 'แทน "คว"', 'R': 'แทน "ร,ฤ"', 'S': 'แทน "ส,ษ,ศ"', 'T': 'แทน "ต,ท,ธ,ฒ,ฐ,ฑ"',
+            'U': 'แทน "อุ,อู"', 'V': 'แทน "ว"', 'W': 'แทน "ว"', 'X': 'แทน "กซ,ซ"', 'Y': 'แทน "ย,ญ,ไอ,อี"', 'Z': 'แทน "ซ"'
+        };
+
+        // เพิ่มการออกเสียงภาษาอังกฤษสำหรับตัวอักษร
+        const englishPronunciations = {
+            'A': 'ey', 'B': 'bi', 'C': 'si', 'D': 'di', 'E': 'i',
+            'F': 'ef', 'G': 'ji', 'H': 'eych', 'I': 'ay', 'J': 'jey',
+            'K': 'key', 'L': 'el', 'M': 'em', 'N': 'en', 'O': 'o',
+            'P': 'pi', 'Q': 'kyu', 'R': 'ar', 'S': 'es', 'T': 'ti',
+            'U': 'yu', 'V': 'vi', 'W': 'dabelyu', 'X': 'eks', 'Y': 'way', 'Z': 'zed'
+        };
+
+        let currentLetterIndex = 0;
+
+        function updatePracticeLetter() {
+            const letter = alphabetLetters[currentLetterIndex];
+            document.getElementById('practiceLetter').textContent = letter;
+            document.getElementById('practiceThai').textContent = thaiPronunciations[letter];
+        }
+
+        function nextPracticeLetter() {
+            currentLetterIndex = (currentLetterIndex + 1) % alphabetLetters.length;
+            updatePracticeLetter();
+        }
+
+        function playLetterSound() {
+            const letter = alphabetLetters[currentLetterIndex];
+            speechSynthesis.cancel();
+
+            if ('speechSynthesis' in window) {
+                const speak = () => {
+                    const utterance = new SpeechSynthesisUtterance(letter);
+                    const voices = speechSynthesis.getVoices();
+                    const englishVoice = voices.find(voice => voice.lang.includes('en'));
+
+                    if (englishVoice) {
+                        utterance.voice = englishVoice;
+                        utterance.lang = 'en-US';
+                    }
+
+                    utterance.rate = 0.9;
+                    utterance.pitch = 1;
+                    utterance.volume = 1;
+
+                    speechSynthesis.speak(utterance);
+                };
+
+                if (speechSynthesis.getVoices().length === 0) {
+                    speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
+                } else {
+                    speak();
+                }
+            }
+        }
+
+        // Exercise 2 variables and functions (Previously Exercise 1)
+        const consonants = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        const vowels = ['A', 'E', 'I', 'O', 'U'];
+
+        // คำอธิบายตัวอักษรภาษาไทย
+        const consonantThai = {
+            'A': 'แทน "อ"', 'B': 'แทน "บ"', 'C': 'แทน "ค"', 'D': 'แทน "ด"', 'E': 'แทน "อี"',
+            'F': 'แทน "ฟ"', 'G': 'แทน "ก"', 'H': 'แทน "ห"', 'I': 'แทน "อิ"', 'J': 'แทน "จ"',
+            'K': 'แทน "ค"', 'L': 'แทน "ล"', 'M': 'แทน "ม"', 'N': 'แทน "น"', 'O': 'แทน "โอ"',
+            'P': 'แทน "ป"', 'Q': 'แทน "ค"', 'R': 'แทน "ร"', 'S': 'แทน "ส"', 'T': 'แทน "ต"',
+            'U': 'แทน "อู"', 'V': 'แทน "ว"', 'W': 'แทน "ว"', 'X': 'แทน "ก/ข"', 'Y': 'แทน "ย"', 'Z': 'แทน "ซ"'
+        };
+
+        const vowelThai = {
+            'A': 'แทน "อะ"', 'E': 'แทน "เอะ"', 'I': 'แทน "อิ"', 'O': 'แทน "โอะ"', 'U': 'แทน "อุ"'
+        };
+
+        let currentConsonantIndex = 0; // A
+        let currentVowelIndex = 0; // A
+
+        const pronunciations = {
+            'AA': 'อา', 'AE': 'เอ', 'AI': 'ไอ', 'AO': 'เอา', 'AU': 'เอา',
+            'BA': 'บา', 'BE': 'บี', 'BI': 'บาย', 'BO': 'โบ', 'BU': 'บู',
+            'CA': 'คา', 'CE': 'ซี', 'CI': 'ไซ', 'CO': 'โค', 'CU': 'คู',
+            'DA': 'ดา', 'DE': 'ดี', 'DI': 'ได', 'DO': 'โด', 'DU': 'ดู',
+            'EA': 'อี', 'EE': 'อี', 'EI': 'อาย', 'EO': 'อี-โอ', 'EU': 'อิว',
+            'FA': 'ฟา', 'FE': 'ฟี', 'FI': 'ไฟ', 'FO': 'โฟ', 'FU': 'ฟู',
+            'GA': 'กา', 'GE': 'จี', 'GI': 'ไจ', 'GO': 'โก', 'GU': 'กู',
+            'HA': 'ฮา', 'HE': 'ฮี', 'HI': 'ไฮ', 'HO': 'โฮ', 'HU': 'ฮู',
+            'IA': 'เอีย', 'IE': 'อาย', 'II': 'อี-อี', 'IO': 'ไอ-โอ', 'IU': 'อิว',
+            'JA': 'จา', 'JE': 'เจ', 'JI': 'ไจ', 'JO': 'โจ', 'JU': 'จู',
+            'KA': 'คา', 'KE': 'คี', 'KI': 'ไค', 'KO': 'โค', 'KU': 'คู',
+            'LA': 'ลา', 'LE': 'ลี', 'LI': 'ไล', 'LO': 'โล', 'LU': 'ลู',
+            'MA': 'มา', 'ME': 'มี', 'MI': 'ไม', 'MO': 'โม', 'MU': 'มู',
+            'NA': 'นา', 'NE': 'นี', 'NI': 'ไน', 'NO': 'โน', 'NU': 'นู',
+            'OA': 'โอ-เอ', 'OE': 'โอ', 'OI': 'ออย', 'OO': 'อู', 'OU': 'เอา',
+            'PA': 'ปา', 'PE': 'ปี', 'PI': 'ไป', 'PO': 'โป', 'PU': 'ปู',
+            'QA': 'คิวา', 'QE': 'คิวี', 'QI': 'คิวาย', 'QO': 'คิวโอ', 'QU': 'คิว',
+            'RA': 'รา', 'RE': 'รี', 'RI': 'ไร', 'RO': 'โร', 'RU': 'รู',
+            'SA': 'ซา', 'SE': 'ซี', 'SI': 'ไซ', 'SO': 'โซ', 'SU': 'ซู',
+            'TA': 'ตา', 'TE': 'ตี', 'TI': 'ไต', 'TO': 'โต', 'TU': 'ตู',
+            'UA': 'อัว', 'UE': 'อูว', 'UI': 'อุย', 'UO': 'อู-โอ', 'UU': 'อู-อู',
+            'VA': 'วา', 'VE': 'วี', 'VI': 'ไว', 'VO': 'โว', 'VU': 'วู',
+            'WA': 'วา', 'WE': 'วี', 'WI': 'ไว', 'WO': 'โว', 'WU': 'วู',
+            'XA': 'เอ็กซา', 'XE': 'เอ็กซี', 'XI': 'เอ็กไซ', 'XO': 'เอ็กโซ', 'XU': 'เอ็กซู',
+            'YA': 'ยา', 'YE': 'ยี', 'YI': 'ไย', 'YO': 'โย', 'YU': 'ยู',
+            'ZA': 'ซา', 'ZE': 'ซี', 'ZI': 'ไซ', 'ZO': 'โซ', 'ZU': 'ซู'
+        };
+
+        // Exercise 3 variables (Previously Exercise 2)
+        let currentConsonantIndex2 = 1; // B
+        let currentVowelIndex2 = 0; // A
+        let currentFinalIndex = 3; // D
+        let finalIsConsonant = true; // true = consonant, false = vowel
+
+        const finalConsonants = ['B', 'C', 'D', 'F', 'G', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'V', 'W', 'X', 'Z'];
+        const finalVowels = ['A', 'E', 'I', 'O', 'U'];
+
+        // ฟังก์ชันสร้างการออกเสียงอัตโนมัติสำหรับทุกคำ
+        function generatePronunciation(consonant, vowel, final) {
+            // คำที่มีการออกเสียงพิเศษ
+            const specialWords = {
+                // คำที่ลงท้ายด้วยพยัญชนะ
+                'BAD': 'แบด', 'BAG': 'แบก', 'BAT': 'แบต', 'BED': 'เบด', 'BIG': 'บิก', 'BIT': 'บิต', 'BOX': 'บ็อกซ์', 'BUG': 'บัก', 'BUS': 'บัส',
+                'CAB': 'แคบ', 'CAD': 'แคด', 'CAT': 'แคต', 'COD': 'คอด', 'CUB': 'คับ', 'CUT': 'คัต', 'CAR': 'คาร์', 'COP': 'ค็อป', 'COW': 'เคา',
+                'DAD': 'แดด', 'DIG': 'ดิก', 'DOG': 'ด็อก', 'DUG': 'ดัก', 'DOT': 'ด็อต', 'DIM': 'ดิม', 'DEN': 'เดน', 'DAM': 'แดม',
+                'FAD': 'แฟด', 'FIG': 'ฟิก', 'FOG': 'ฟ็อก', 'FUN': 'ฟัน', 'FAT': 'แฟต', 'FIT': 'ฟิต', 'FAN': 'แฟน', 'FUR': 'เฟอร์',
+                'GAG': 'แกก', 'GIG': 'กิก', 'GOT': 'ก็อต', 'GUM': 'กัม', 'GAP': 'แกป', 'GUN': 'กัน', 'GAS': 'แกส', 'GET': 'เก็ต',
+                'HAD': 'แฮ드', 'HIT': 'ฮิต', 'HOT': 'ฮ็อต', 'HUG': 'ฮัก', 'HAT': 'แฮต', 'HIM': 'ฮิม', 'HEN': 'เฮน', 'HER': 'เฮอร์',
+                'JAM': 'แจม', 'JIG': 'จิก', 'JOB': 'จ็อบ', 'JUG': 'จัก', 'JET': 'เจ็ต', 'JAR': 'จาร์', 'JOG': 'จ็อก', 'JUT': 'จัต',
+                'KID': 'คิด', 'KIT': 'คิต', 'KEY': 'คีย์', 'KEG': 'เค็ก', 'KEN': 'เคน', 'KIN': 'คิน', 'KOT': 'ค็อต',
+                'LAD': 'แลด', 'LAG': 'แลก', 'LED': 'เลด', 'LET': 'เลต', 'LID': 'ลิด', 'LOG': 'ล็อก', 'LUG': 'ลัก', 'LAP': 'แลป',
+                'MAD': 'แม드', 'MAN': 'แมน', 'MUD': 'มัด', 'MUG': 'มัก', 'MAT': 'แมต', 'MOM': 'มอม', 'MET': 'เม็ต', 'MIX': 'มิกซ์',
+                'NAP': 'แนป', 'NET': 'เน็ต', 'NOD': 'น็อด', 'NUT': 'นัท', 'NAG': 'แนก', 'NIP': 'นิป', 'NOT': 'น็อต', 'NOW': 'นาว',
+                'PAD': 'แพด', 'PEG': 'เพ็ก', 'PIG': 'พิก', 'POT': 'พ็อต', 'PUT': 'พุต', 'PAT': 'แพต', 'PIN': 'พิน', 'PUP': 'พัพ',
+                'RAG': 'แร็ก', 'RAM': 'แรม', 'RAT': 'แร็ต', 'RED': 'เรด', 'RIB': 'ริب', 'ROD': 'ร็อด', 'RUG': 'รั็ก', 'RUN': 'รัน',
+                'SAD': 'แซด', 'SAT': 'แซ็ต', 'SET': 'เซ็ต', 'SIT': 'ซิต', 'SOB': 'ซ็อบ', 'SUN': 'ซัน', 'SAP': 'แซ็ป', 'SIP': 'ซิป',
+                'TAB': 'แท็บ', 'TAG': 'แท็ก', 'TAP': 'แท็ป', 'TIN': 'ทิน', 'TIP': 'ทิป', 'TOP': 'ท็อป', 'TUB': 'ทับ', 'TUG': 'ทั็ก',
+                'VAN': 'แวน', 'VET': 'เว็ต', 'VIP': 'วิป', 'VEX': 'เว็กซ์', 'VAT': 'แว็ต', 'VOW': 'วาว', 'VIM': 'วิм',
+                'WAG': 'แวก', 'WET': 'เว็ต', 'WIN': 'วิน', 'WIG': 'วิก', 'WAX': 'แว็กซ์', 'WEB': 'เว็บ', 'WOK': 'ว็อก',
+                'YAM': 'แยม', 'YET': 'เย็ต', 'YAK': 'แยก', 'YAP': 'แย็ป', 'YEN': 'เยน', 'YES': 'เยส', 'YUM': 'ยัม',
+                'ZAP': 'แซ็ป', 'ZIP': 'ซิป', 'ZIG': 'ซิก', 'ZAG': 'แซ็ก', 'ZOO': 'ซู', 'ZIT': 'ซิต', 'ZED': 'เซด',
+
+                // คำที่ลงท้ายด้วยสระ
+                'BAA': 'บา', 'BEE': 'บี', 'BOO': 'บู', 'BAY': 'เบย์', 'BOY': 'บอย', 'BEY': 'เบย์', 'BUY': 'บาย',
+                'CUE': 'คิว', 'COO': 'คู', 'CAY': 'เคย์', 'COY': 'คอย', 'CRY': 'คราย',
+                'DAY': 'เดย์', 'DIE': 'ดาย', 'DUE': 'ดิว', 'DOE': 'โด', 'DRY': 'ดราย',
+                'EYE': 'อาย', 'EAT': 'อีต', 'EEL': 'อีล', 'EAR': 'เอียร์', 'EKE': 'อีค',
+                'FAR': 'ฟาร์', 'FEE': 'ฟี', 'FOE': 'โฟ', 'FLY': 'ฟลาย', 'FRY': 'ฟราย',
+                'GAY': 'เกย์', 'GEE': 'จี', 'GOO': 'กู', 'GUY': 'กาย', 'GRAY': 'เกรย์',
+                'HAY': 'เฮย์', 'HEY': 'เฮย์', 'HUE': 'ฮิว', 'HOE': 'โฮ', 'HAW': 'ฮอ',
+                'ICE': 'ไอซ์', 'INK': 'อิงค์', 'ILL': 'อิล', 'ION': 'ไอออน', 'IRE': 'ไอเออร์',
+                'JAY': 'เจย์', 'JOY': 'จอย', 'JAB': 'แจ็บ', 'JET': 'เจ็ต', 'JIB': 'จิบ',
+                'KEY': 'คีย์', 'KAY': 'เคย์', 'KIT': 'คิต', 'KEG': 'เค็ก', 'KID': 'คิด',
+                'LAY': 'เลย์', 'LEE': 'ลี', 'LIE': 'ลาย', 'LOO': 'ลู', 'LOY': 'ลอย',
+                'MAY': 'เมย์', 'MEW': 'มิว', 'MOO': 'มู', 'MY': 'มาย', 'MAZE': 'เมซ',
+                'NAY': 'เนย์', 'NEW': 'นิว', 'NOW': 'นาว', 'NOD': 'น็อด', 'NET': 'เน็ต',
+                'OAK': 'โอ๊ก', 'OAR': 'ออร์', 'ODE': 'โอด', 'OIL': 'ออยล์', 'OWN': 'โอน',
+                'PAY': 'เพย์', 'PIE': 'พาย', 'PLY': 'พลาย', 'PRY': 'พราย', 'PUR': 'เพอร์',
+                'QUA': 'ควา', 'QUE': 'คิว', 'QUI': 'ควิ', 'QUO': 'ควอ', 'QUIZ': 'ควิซ',
+                'RAY': 'เรย์', 'REY': 'เรย์', 'ROE': 'โร', 'RUE': 'รู', 'RYE': 'ราย',
+                'SAY': 'เซย์', 'SEE': 'ซี', 'SHY': 'ชาย', 'SKY': 'สกาย', 'SLY': 'สลาย',
+                'TAY': 'เทย์', 'TEA': 'ที', 'TOE': 'โท', 'TRY': 'ทราย', 'THY': 'ไทย',
+                'USE': 'ยูส', 'URN': 'เอิร์น', 'UKE': 'ยูค', 'UFO': 'ยูเอฟโอ', 'ULU': 'อูลู',
+                'VAN': 'แวน', 'VEX': 'เว็กซ์', 'VIA': 'เวีย', 'VIE': 'ไว', 'VOX': 'ว็อกซ์',
+                'WAY': 'เวย์', 'WHO': 'ฮู', 'WHY': 'วาย', 'WOE': 'โว', 'WAX': 'แว็กซ์',
+                'YAK': 'แยก', 'YAM': 'แยม', 'YAW': 'ยอ', 'YAY': 'เยย์', 'YEP': 'เย็ป',
+                'ZAP': 'แซ็ป', 'ZED': 'เซด', 'ZEE': 'ซี', 'ZIP': 'ซิป', 'ZOO': 'ซู'
+            };
+
+            const word = consonant + vowel + final;
+
+            // ถ้ามีใน specialWords ให้ใช้การออกเสียงนั้น
+            if (specialWords[word]) {
+                return specialWords[word];
+            }
+
+            // ถ้าไม่มี ให้สร้างการออกเสียงอัตโนมัติ
+            const consonantSound = consonantThai[consonant].replace('แทน "', '').replace('"', '');
+            const vowelSound = vowelThai[vowel].replace('แทน "', '').replace('"', '');
+            const finalSound = finalIsConsonant ?
+                consonantThai[final].replace('แทน "', '').replace('"', '') :
+                vowelThai[final].replace('แทน "', '').replace('"', '');
+
+            // ใช้กฎง่ายๆ สำหรับการออกเสียง
+            if (finalIsConsonant) {
+                return consonantSound + vowelSound + finalSound;
+            } else {
+                return consonantSound + vowelSound + '-' + finalSound;
+            }
+        }
+
+        // Exercise 2 functions (Previously Exercise 1)
+        function nextConsonant() {
+            currentConsonantIndex = (currentConsonantIndex + 1) % consonants.length;
+            updateDisplay();
+        }
+
+        function nextVowel() {
+            currentVowelIndex = (currentVowelIndex + 1) % vowels.length;
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const consonant = consonants[currentConsonantIndex];
+            const vowel = vowels[currentVowelIndex];
+            const combined = consonant + vowel;
+
+            document.getElementById('consonant').textContent = consonant;
+            document.getElementById('vowel').textContent = vowel;
+            document.getElementById('combined').textContent = combined;
+
+            document.getElementById('consonant-thai').textContent = consonantThai[consonant];
+            document.getElementById('vowel-thai').textContent = vowelThai[vowel];
+
+            document.getElementById('pronunciation').textContent = pronunciations[combined] || 'ลองคำอื่น';
+        }
+
+        // ฟังก์ชันแปลงตัวอักษรเป็นคำอ่านภาษาอังกฤษ
+        function getEnglishPronunciation(word) {
+            const pronunciationMap = {
+                'AA': 'ah', 'AE': 'eh', 'AI': 'eye', 'AO': 'ow', 'AU': 'oo',
+                'BA': 'bah', 'BE': 'bee', 'BI': 'bye', 'BO': 'boh', 'BU': 'boo',
+                'CA': 'kah', 'CE': 'see', 'CI': 'sigh', 'CO': 'ko', 'CU': 'koo',
+                'DA': 'dah', 'DE': 'dee', 'DI': 'dye', 'DO': 'doh', 'DU': 'doo',
+                'EA': 'eh', 'EE': 'e', 'EI': 'ay', 'EO': 'ee-oh', 'EU': 'yoo',
+                'FA': 'fa', 'FE': 'fee', 'FI': 'fye', 'FO': 'foh', 'FU': 'foo',
+                'GA': 'gah', 'GE': 'jee', 'GI': 'guy', 'GO': 'go', 'GU': 'goo',
+                'HA': 'hah', 'HE': 'hee', 'HI': 'hi', 'HO': 'ho', 'HU': 'hoo',
+                'IA': 'ah', 'IE': 'e', 'II': 'eye', 'IO': 'o', 'IU': 'oo',
+                'JA': 'jah', 'JE': 'jee', 'JI': 'jy', 'JO': 'joe', 'JU': 'joo',
+                'KA': 'kah', 'KE': 'kee', 'KI': 'keye', 'KO': 'ko', 'KU': 'koo',
+                'LA': 'lah', 'LE': 'lee', 'LI': 'lye', 'LO': 'low', 'LU': 'loo',
+                'MA': 'ma', 'ME': 'mee', 'MI': 'my', 'MO': 'mow', 'MU': 'moo',
+                'NA': 'nah', 'NE': 'nee', 'NI': 'nye', 'NO': 'no', 'NU': 'nu',
+                'OA': 'ah', 'OE': 'e', 'OI': 'oy', 'OO': 'o', 'OU': 'ow',
+                'PA': 'pah', 'PE': 'pee', 'PI': 'pie', 'PO': 'po', 'PU': 'puu',
+                'QA': 'kah', 'QE': 'kee', 'QI': 'kigh', 'QO': 'ko', 'QU': 'koo',
+                'RA': 'rah', 'RE': 'ree', 'RI': 'rye', 'RO': 'row', 'RU': 'roo',
+                'SA': 'sah', 'SE': 'see', 'SI': 'sigh', 'SO': 'so', 'SU': 'soo',
+                'TA': 'tah', 'TE': 'tee', 'TI': 'tie', 'TO': 'toe', 'TU': 'too',
+                'UA': 'oo-ah', 'UE': 'e', 'UI': 'eye', 'UO': 'ow', 'UU': 'ao',
+                'VA': 'vah', 'VE': 'vee', 'VI': 'vei', 'VO': 'voh', 'VU': 'voo',
+                'WA': 'wah', 'WE': 'wee', 'WI': 'wy', 'WO': 'woh', 'WU': 'woo',
+                'XA': 'sah', 'XE': 'see', 'XI': 'sigh', 'XO': 'soh', 'XU': 'soo',
+                'YA': 'yah', 'YE': 'yee', 'YI': 'yeye', 'YO': 'yoh', 'YU': 'yoo',
+                'ZA': 'zah', 'ZE': 'zee', 'ZI': 'sigh', 'ZO': 'zoh', 'ZU': 'zoo'
+            };
+
+            return pronunciationMap[word] || word;
+        }
+
+        function playSound() {
+            const combined = document.getElementById('combined').textContent;
+            const englishWord = getEnglishPronunciation(combined);
+
+            speechSynthesis.cancel();
+
+            if ('speechSynthesis' in window) {
+                const speak = () => {
+                    const utterance = new SpeechSynthesisUtterance(englishWord);
+                    const voices = speechSynthesis.getVoices();
+                    const englishVoice = voices.find(voice => voice.lang.includes('en'));
+
+                    if (englishVoice) {
+                        utterance.voice = englishVoice;
+                        utterance.lang = 'en-US';
+                    }
+
+                    utterance.rate = 0.8;
+                    utterance.pitch = 1;
+                    utterance.volume = 1;
+
+                    speechSynthesis.speak(utterance);
+                };
+
+                if (speechSynthesis.getVoices().length === 0) {
+                    speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
+                } else {
+                    speak();
+                }
+            }
+        }
+
+        // Exercise 3 functions (Previously Exercise 2)
+        function nextConsonant2() {
+            currentConsonantIndex2 = (currentConsonantIndex2 + 1) % consonants.length;
+            updateDisplay2();
+        }
+
+        function nextVowel2() {
+            currentVowelIndex2 = (currentVowelIndex2 + 1) % vowels.length;
+            updateDisplay2();
+        }
+
+        function nextFinal() {
+            if (finalIsConsonant) {
+                currentFinalIndex = (currentFinalIndex + 1) % finalConsonants.length;
+            } else {
+                currentFinalIndex = (currentFinalIndex + 1) % finalVowels.length;
+            }
+            updateDisplay2();
+        }
+
+        function toggleFinalType() {
+            finalIsConsonant = !finalIsConsonant;
+            currentFinalIndex = 0;
+            updateDisplay2();
+        }
+
+        function updateDisplay2() {
+            const consonant = consonants[currentConsonantIndex2];
+            const vowel = vowels[currentVowelIndex2];
+            let final;
+
+            if (finalIsConsonant) {
+                final = finalConsonants[currentFinalIndex];
+                document.getElementById('finalTypeText').textContent = 'ตัวสะกด: พยัญชนะ';
+            } else {
+                final = finalVowels[currentFinalIndex];
+                document.getElementById('finalTypeText').textContent = 'ตัวสะกด: สระ';
+            }
+
+            const combined = consonant + vowel + final;
+
+            document.getElementById('consonant2').textContent = consonant;
+            document.getElementById('vowel2').textContent = vowel;
+            document.getElementById('final').textContent = final;
+            document.getElementById('combined2').textContent = combined;
+
+            document.getElementById('consonant2-thai').textContent = consonantThai[consonant];
+            document.getElementById('vowel2-thai').textContent = vowelThai[vowel];
+
+            if (finalIsConsonant) {
+                document.getElementById('final-thai').textContent = consonantThai[final];
+            } else {
+                document.getElementById('final-thai').textContent = vowelThai[final];
+            }
+
+            document.getElementById('pronunciation2').textContent = generatePronunciation(consonant, vowel, final);
+        }
+
+        // ฟังก์ชันแปลงคำศัพท์ 3 ตัวอักษรเป็นคำอ่านภาษาอังกฤษ
+        function getEnglishPronunciation2(word) {
+            const pronunciationMap = {
+                'BAD': 'bad', 'BAG': 'bag', 'BAT': 'bat', 'BED': 'bed', 'BIG': 'big',
+                'BIT': 'bit', 'BOX': 'box', 'BUG': 'bug', 'BUS': 'bus', 'CAB': 'cab',
+                'CAD': 'cad', 'CAT': 'cat', 'COD': 'cod', 'CUB': 'cub', 'CUT': 'cut',
+                'CAR': 'car', 'COP': 'cop', 'COW': 'cow', 'DAD': 'dad', 'DIG': 'dig',
+                'DOG': 'dog', 'DUG': 'dug', 'DOT': 'dot', 'DIM': 'dim', 'DEN': 'den',
+                'DAM': 'dam', 'FAD': 'fad', 'FIG': 'fig', 'FOG': 'fog', 'FUN': 'fun',
+                'FAT': 'fat', 'FIT': 'fit', 'FAN': 'fan', 'FUR': 'fur', 'GAG': 'gag',
+                'GIG': 'gig', 'GOT': 'got', 'GUM': 'gum', 'GAP': 'gap', 'GUN': 'gun',
+                'GAS': 'gas', 'GET': 'get', 'HAD': 'had', 'HIT': 'hit', 'HOT': 'hot',
+                'HUG': 'hug', 'HAT': 'hat', 'HIM': 'him', 'HEN': 'hen', 'HER': 'her',
+                'JAM': 'jam', 'JIG': 'jig', 'JOB': 'job', 'JUG': 'jug', 'JET': 'jet',
+                'JAR': 'jar', 'JOG': 'jog', 'JUT': 'jut', 'KID': 'kid', 'KIT': 'kit',
+                'KEY': 'key', 'KEG': 'keg', 'KEN': 'ken', 'KIN': 'kin', 'KOT': 'cot',
+                'LAD': 'lad', 'LAG': 'lag', 'LED': 'led', 'LET': 'let', 'LID': 'lid',
+                'LOG': 'log', 'LUG': 'lug', 'LAP': 'lap', 'MAD': 'mad', 'MAN': 'man',
+                'MUD': 'mud', 'MUG': 'mug', 'MAT': 'mat', 'MOM': 'mom', 'MET': 'met',
+                'MIX': 'mix', 'NAP': 'nap', 'NET': 'net', 'NOD': 'nod', 'NUT': 'nut',
+                'NAG': 'nag', 'NIP': 'nip', 'NOT': 'not', 'NOW': 'now', 'PAD': 'pad',
+                'PEG': 'peg', 'PIG': 'pig', 'POT': 'pot', 'PUT': 'put', 'PAT': 'pat',
+                'PIN': 'pin', 'PUP': 'pup', 'RAG': 'rag', 'RAM': 'ram', 'RAT': 'rat',
+                'RED': 'red', 'RIB': 'rib', 'ROD': 'rod', 'RUG': 'rug', 'RUN': 'run',
+                'SAD': 'sad', 'SAT': 'sat', 'SET': 'set', 'SIT': 'sit', 'SOB': 'sob',
+                'SUN': 'sun', 'SAP': 'sap', 'SIP': 'sip', 'TAB': 'tab', 'TAG': 'tag',
+                'TAP': 'tap', 'TIN': 'tin', 'TIP': 'tip', 'TOP': 'top', 'TUB': 'tub',
+                'TUG': 'tug', 'VAN': 'van', 'VET': 'vet', 'VIP': 'vip', 'VEX': 'vex',
+                'VAT': 'vat', 'VOW': 'vow', 'VIM': 'vim', 'WAG': 'wag', 'WET': 'wet',
+                'WIN': 'win', 'WIG': 'wig', 'WAX': 'wax', 'WEB': 'web', 'WOK': 'wok',
+                'YAM': 'yam', 'YET': 'yet', 'YAK': 'yak', 'YAP': 'yap', 'YEN': 'yen',
+                'YES': 'yes', 'YUM': 'yum', 'ZAP': 'zap', 'ZIP': 'zip', 'ZIG': 'zig',
+                'ZAG': 'zag', 'ZOO': 'zoo', 'ZIT': 'zit', 'ZED': 'zed'
+            };
+
+            return pronunciationMap[word] || word;
+        }
+
+        function playSound2() {
+            const combined2 = document.getElementById('combined2').textContent;
+            const englishWord = getEnglishPronunciation2(combined2);
+
+            speechSynthesis.cancel();
+
+            if ('speechSynthesis' in window) {
+                const speak = () => {
+                    const utterance = new SpeechSynthesisUtterance(englishWord);
+                    const voices = speechSynthesis.getVoices();
+                    const englishVoice = voices.find(voice => voice.lang.includes('en'));
+
+                    if (englishVoice) {
+                        utterance.voice = englishVoice;
+                        utterance.lang = 'en-US';
+                    }
+
+                    utterance.rate = 0.8;
+                    utterance.pitch = 1;
+                    utterance.volume = 1;
+
+                    speechSynthesis.speak(utterance);
+                };
+
+                if (speechSynthesis.getVoices().length === 0) {
+                    speechSynthesis.addEventListener('voiceschanged', speak, { once: true });
+                } else {
+                    speak();
+                }
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function (event) {
+            const key = event.key.toUpperCase();
+
+            // ถ้ากำลังอยู่ใน Exercise 2
+            if (!document.getElementById('exercise2').classList.contains('hidden')) {
+                if (consonants.includes(key)) {
+                    currentConsonantIndex = consonants.indexOf(key);
+                    updateDisplay();
+                } else if (vowels.includes(key)) {
+                    currentVowelIndex = vowels.indexOf(key);
+                    updateDisplay();
+                }
+            }
+
+            // ถ้ากำลังอยู่ใน Exercise 3
+            if (!document.getElementById('exercise3').classList.contains('hidden')) {
+                if (consonants.includes(key)) {
+                    currentConsonantIndex2 = consonants.indexOf(key);
+                    updateDisplay2();
+                } else if (vowels.includes(key)) {
+                    currentVowelIndex2 = vowels.indexOf(key);
+                    updateDisplay2();
+                }
+            }
+        });
+
+        // Initialize
+        updateDisplay();
+        updateDisplay2();
+    </script>
+</body>
+
+</html>
