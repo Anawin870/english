@@ -1,0 +1,2520 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เว็บฝึกภาษาอังกฤษ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        .letter-display {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .hover-scale {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .practice-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .practice-container {
+                flex-direction: row;
+                gap: 2rem;
+            }
+        }
+
+        /* ปรับขนาดปุ่มและพื้นที่สำหรับมือถือ */
+        @media (max-width: 640px) {
+            .mobile-small-btn {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+
+            .mobile-small-card {
+                padding: 1rem !important;
+            }
+
+            .mobile-small-text {
+                font-size: 2.5rem !important;
+            }
+
+            .mobile-menu-card {
+                padding: 1.5rem !important;
+            }
+
+            .mobile-menu-icon {
+                font-size: 3rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .mobile-menu-title {
+                font-size: 1.25rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .mobile-menu-desc {
+                font-size: 0.875rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .mobile-reduce-gap {
+                gap: 0.5rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .mobile-text-sm {
+                font-size: 0.875rem !important;
+            }
+
+            .mobile-text-lg {
+                font-size: 1.5rem !important;
+            }
+
+            .mobile-text-xl {
+                font-size: 1.75rem !important;
+            }
+
+            .mobile-px-2 {
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+
+            .vowel-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+        }
+
+        /* สำหรับหน้าจอขนาดใหญ่ */
+        @media (min-width: 1024px) {
+            .desktop-large-text {
+                font-size: 4.5rem !important;
+            }
+
+            .desktop-large-card {
+                padding: 3rem !important;
+            }
+
+            .vowel-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+            }
+        }
+
+        .vowel-btn {
+            transition: all 0.3s ease;
+        }
+
+        .vowel-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .vowel-btn.active {
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body class="gradient-bg min-h-screen p-4">
+    <div class="max-w-6xl mx-auto">
+        <!-- เพิ่มโลโก้โรงเรียน -->
+        <div class="flex justify-center mb-6">
+            <img src="https://img2.pic.in.th/pic/1000039395.png" alt="โรงเรียนฮิดายาตุดดีนนาวงวิทยา"
+                class="h-16 md:h-20">
+        </div>
+        <!-- หน้าปก -->
+        <div id="coverPage" class="text-center bg-white rounded-2xl md:rounded-3xl card-shadow p-6 md:p-8 mb-8">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">ยินดีต้อนรับ</h1>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-purple-600 mb-6">เว็บฝึกภาษาอังกฤษ</h2>
+
+            <div class="mb-6">
+                <img src="https://img2.pic.in.th/pic/1000039395.png" alt="โรงเรียนโลโก้" class="h-24 mx-auto mb-4">
+                <p class="text-lg md:text-xl text-gray-700">โดย โรงเรียนฮิดายาตุดดีนนาวงวิทยา</p>
+            </div>
+
+            <p class="text-gray-600 text-lg md:text-xl mb-8">แหล่งเรียนรู้ภาษาอังกฤษ</p>
+
+            <button onclick="startApplication()"
+                class="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white font-bold py-3 px-8 rounded-full text-lg md:text-xl transition-all duration-300 transform hover:scale-105">
+                เริ่มต้นใช้งาน
+            </button>
+        </div>
+        <!-- Main Menu -->
+        <div id="mainMenu" class="hidden text-center">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">🎓 เว็บฝึกภาษาอังกฤษ</h1>
+            <p class="text-white/80 text-lg md:text-xl mb-8 md:mb-12">เลือกแบบฝึกหัดที่ต้องการ</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8">
+                <!-- Exercise 1 -->
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-6 md:p-8 hover-scale cursor-pointer mobile-menu-card"
+                    onclick="startExercise1()">
+                    <div class="text-5xl md:text-6xl mb-4 mobile-menu-icon">🔤</div>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 mobile-menu-title">แบบฝึกหัดที่
+                        1</h2>
+                    <p class="text-gray-600 mb-4 md:mb-6 mobile-menu-desc">เรียนรู้<br>ตัวอักษรภาษาอังกฤษ</p>
+                    <div
+                        class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-sm md:text-base">
+                        เริ่มฝึก
+                    </div>
+                </div>
+
+                <!-- Exercise 2 -->
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-6 md:p-8 hover-scale cursor-pointer mobile-menu-card"
+                    onclick="startExercise2()">
+                    <div class="text-5xl md:text-6xl mb-4 mobile-menu-icon">📚</div>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 mobile-menu-title">แบบฝึกหัดที่
+                        2</h2>
+                    <p class="text-gray-600 mb-4 md:mb-6 mobile-menu-desc">ฝึกอ่าน<br>พยัญชนะ + สระ</p>
+                    <div
+                        class="bg-gradient-to-r from-green-500 to-teal-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-sm md:text-base">
+                        เริ่มฝึก
+                    </div>
+                </div>
+
+                <!-- Exercise 3 -->
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-6 md:p-8 hover-scale cursor-pointer mobile-menu-card"
+                    onclick="startExercise3()">
+                    <div class="text-5xl md:text-6xl mb-4 mobile-menu-icon">📖</div>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 mobile-menu-title">แบบฝึกหัดที่
+                        3</h2>
+                    <p class="text-gray-600 mb-4 md:mb-6 mobile-menu-desc">ฝึกอ่าน<br>พยัญชนะ + สระ + ตัวสะกด</p>
+                    <div
+                        class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-sm md:text-base">
+                        เริ่มฝึก
+                    </div>
+                </div>
+
+                <!-- Exercise 4 (New) -->
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-6 md:p-8 hover-scale cursor-pointer mobile-menu-card"
+                    onclick="startExercise4()">
+                    <div class="text-5xl md:text-6xl mb-4 mobile-menu-icon">🌟</div>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 mobile-menu-title">แบบฝึกหัดที่
+                        4</h2>
+                    <p class="text-gray-600 mb-4 md:mb-6 mobile-menu-desc">เรียนรู้<br>คำที่มีสระคู่</p>
+                    <div
+                        class="bg-gradient-to-r from-purple-500 to-pink-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-sm md:text-base">
+                        เริ่มฝึก
+                    </div>
+                </div>
+
+                <!-- Exercise 5 (New) -->
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-6 md:p-8 hover-scale cursor-pointer mobile-menu-card"
+                    onclick="startExercise5()">
+                    <div class="text-5xl md:text-6xl mb-4 mobile-menu-icon">🔠</div>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 mobile-menu-title">แบบฝึกหัดที่
+                        5</h2>
+                    <p class="text-gray-600 mb-4 md:mb-6 mobile-menu-desc">เรียนรู้<br>พยัญชนะคู่</p>
+                    <div
+                        class="bg-gradient-to-r from-indigo-500 to-blue-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-sm md:text-base">
+                        เริ่มฝึก
+                    </div>
+                </div>
+
+                <!-- Exercise 6 (New) -->
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-6 md:p-8 hover-scale cursor-pointer mobile-menu-card"
+                    onclick="startExercise6()">
+                    <div class="text-5xl md:text-6xl mb-4 mobile-menu-icon">📝</div>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 mobile-menu-title">แบบฝึกหัดที่
+                        6</h2>
+                    <p class="text-gray-600 mb-4 md:mb-6 mobile-menu-desc">เรียนรู้การเติม<br> -ing, -s/-es, -ed</p>
+                    <div
+                        class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-sm md:text-base">
+                        เริ่มฝึก
+                    </div>
+                </div>
+
+                <!-- Exercise 7 (New) -->
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-6 md:p-8 hover-scale cursor-pointer mobile-menu-card"
+                    onclick="startExercise7()">
+                    <div class="text-5xl md:text-6xl mb-4 mobile-menu-icon">📚</div>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 mobile-menu-title">แบบฝึกหัดที่
+                        7</h2>
+                    <p class="text-gray-600 mb-4 md:mb-6 mobile-menu-desc">เรียนรู้คำศัพท์<br>แบ่งตามหมวดหมู่</p>
+                    <div
+                        class="bg-gradient-to-r from-purple-400 to-purple-600 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-semibold text-sm md:text-base">
+                        เริ่มฝึก
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Exercise 1 Content -->
+        <div id="exercise1" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-6 md:mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full mb-3 md:mb-4 transition-colors mobile-small-btn">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">🔤 แบบฝึกหัดที่ 1</h1>
+                <p class="text-white/80 text-base md:text-lg">เรียนรู้ตัวอักษรภาษาอังกฤษและการออกเสียง</p>
+            </div>
+
+            <!-- Main Card -->
+            <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                <div class="text-center mb-6 md:mb-8">
+                    <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 md:mb-4">ตัวอักษรภาษาอังกฤษ
+                    </h2>
+                    <p class="text-gray-600 text-sm md:text-base">เรียนรู้ตัวอักษรภาษาอังกฤษและตัวแทนในภาษาไทย</p>
+                </div>
+
+                <!-- Practice Section -->
+                <div class="practice-container mb-4 md:mb-6">
+                    <div
+                        class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl md:rounded-2xl p-4 md:p-6 w-full md:w-1/2 mobile-small-card">
+                        <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-white letter-display mb-3 md:mb-4"
+                            id="practiceLetter">A</div>
+                        <p class="text-white/90 text-sm md:text-base mb-2">ตัวอักษรภาษาอังกฤษ</p>
+                        <button onclick="nextPracticeLetter()"
+                            class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full transition-colors text-sm mobile-small-btn">
+                            ตัวอักษรถัดไป
+                        </button>
+                    </div>
+                    <div
+                        class="bg-gradient-to-br from-pink-500 to-red-500 rounded-xl md:rounded-2xl p-4 md:p-6 w-full md:w-1/2 mobile-small-card">
+                        <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4"
+                            id="practiceThai">แทน "อ"</div>
+                        <p class="text-white/90 text-sm md:text-base mb-2">ตัวแทนในภาษาไทย</p>
+                        <button onclick="playLetterSound()"
+                            class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full transition-colors mt-3 pulse-animation text-sm mobile-small-btn">
+                            🔊 ฟังเสียง
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-white/20 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 text-white">
+                <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">วิธีใช้งาน:</h3>
+                <ul class="space-y-1 md:space-y-2 text-white/90 text-sm md:text-base">
+                    <li>• ใช้ส่วนฝึกออกเสียงเพื่อเรียนรู้ตัวอักษรภาษาอังกฤษ</li>
+                    <li>• ด้านซ้ายแสดงตัวอักษรภาษาอังกฤษ</li>
+                    <li>• ด้านขวาแสดงตัวแทนในภาษาไทย</li>
+                    <li>• กดปุ่ม "ตัวอักษรถัดไป" เพื่อเปลี่ยนตัวอักษร</li>
+                    <li>• กดปุ่ม "ฟังเสียงภาษาอังกฤษ" เพื่อฟังการออกเสียงภาษาอังกฤษ</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Exercise 2 Content -->
+        <div id="exercise2" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-6 md:mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full mb-3 md:mb-4 transition-colors mobile-small-btn">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">📚 แบบฝึกหัดที่ 2</h1>
+                <p class="text-white/80 text-base md:text-lg">คลิกที่ตัวอักษรหรือสระเพื่อเปลี่ยน
+                    หรือพิมพ์เพื่อเลือกตัวอักษรโดยตรง
+                </p>
+            </div>
+
+            <!-- Main Card -->
+            <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8 items-center mobile-reduce-gap">
+                    <!-- Consonant Section -->
+                    <div class="text-center">
+                        <h2 class="text-lg md:text-xl lg:text-2xl font-semibold text-gray-700 mb-3 md:mb-4">พยัญชนะ
+                            (Consonant)</h2>
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl md:rounded-2xl p-4 md:p-6 hover-scale cursor-pointer mobile-small-card desktop-large-card"
+                            onclick="nextConsonant()">
+                            <div class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white letter-display mb-2 desktop-large-text"
+                                id="consonant">A</div>
+                            <div class="text-white/90 text-sm md:text-base lg:text-lg mb-1" id="consonant-thai">แทน "อ"
+                            </div>
+                            <div class="text-white/80 text-xs md:text-sm">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+
+                    <!-- Vowel Section -->
+                    <div class="text-center">
+                        <h2 class="text-lg md:text-xl lg:text-2xl font-semibold text-gray-700 mb-3 md:mb-4">สระ (Vowel)
+                        </h2>
+                        <div class="bg-gradient-to-br from-pink-500 to-red-500 rounded-xl md:rounded-2xl p-4 md:p-6 hover-scale cursor-pointer mobile-small-card desktop-large-card"
+                            onclick="nextVowel()">
+                            <div class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white letter-display mb-2 desktop-large-text"
+                                id="vowel">A</div>
+                            <div class="text-white/90 text-sm md:text-base lg:text-lg mb-1" id="vowel-thai">แทน "อะ"
+                            </div>
+                            <div class="text-white/80 text-xs md:text-sm">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combined Display -->
+                <div class="mt-6 md:mt-8 text-center">
+                    <div
+                        class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl md:rounded-2xl p-4 md:p-6 mb-3 md:mb-4">
+                        <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-white letter-display mb-2"
+                            id="combined">AA</div>
+                        <div class="text-white/80 text-base md:text-xl">คำที่เกิดขึ้น</div>
+                    </div>
+
+                    <!-- Pronunciation -->
+                    <div class="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4 mb-3 md:mb-4">
+                        <div class="text-lg md:text-xl lg:text-2xl font-semibold text-gray-700 mb-1 md:mb-2">การออกเสียง
+                        </div>
+                        <div class="text-xl md:text-2xl lg:text-3xl text-blue-600 font-medium" id="pronunciation">อา
+                        </div>
+                    </div>
+
+                    <!-- Play Sound Button -->
+                    <button onclick="playSound()"
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded-full text-base md:text-lg lg:text-xl hover-scale transition-colors duration-200 pulse-animation mobile-small-btn">
+                        🔊 ฟังเสียง
+                    </button>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-white/20 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 text-white">
+                <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">วิธีใช้งาน:</h3>
+                <ul class="space-y-1 md:space-y-2 text-white/90 text-sm md:text-base">
+                    <li>• คลิกที่ตัวอักษรหรือสระเพื่อเปลี่ยนเป็นตัวถัดไป</li>
+                    <li>• พิมพ์ตัวอักษร A-Z เพื่อเลือกตัวอักษรโดยตรง</li>
+                    <li>• กดปุ่ม "ฟังเสียง" เพื่อฟังการออกเสียง</li>
+                    <li>• ดูการออกเสียงเป็นภาษาไทยด้านล่าง</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Exercise 3 Content -->
+        <div id="exercise3" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-6 md:mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full mb-3 md:mb-4 transition-colors mobile-small-btn">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">📖 แบบฝึกหัดที่ 3</h1>
+                <p class="text-white/80 text-base md:text-lg">ฝึกอ่านพยัญชนะ + สระ + ตัวสะกด (เฉพาะคำที่มีความหมาย)</p>
+            </div>
+
+            <!-- Main Card -->
+            <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4 lg:gap-6 items-center mobile-reduce-gap">
+                    <!-- Consonant Section -->
+                    <div class="text-center">
+                        <h2 class="text-base md:text-lg lg:text-xl font-semibold text-gray-700 mb-3">พยัญชนะ</h2>
+                        <div class="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl md:rounded-2xl p-3 md:p-4 lg:p-6 hover-scale cursor-pointer mobile-small-card"
+                            onclick="nextConsonant2()">
+                            <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-white letter-display mb-2"
+                                id="consonant2">B</div>
+                            <div class="text-white/90 text-xs md:text-sm mb-1" id="consonant2-thai">แทน "บ"</div>
+                            <div class="text-white/80 text-xs">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+
+                    <!-- Vowel Section -->
+                    <div class="text-center">
+                        <h2 class="text-base md:text-lg lg:text-2xl font-semibold text-gray-700 mb-3">สระ</h2>
+                        <div class="bg-gradient-to-br from-pink-500 to-red-500 rounded-xl md:rounded-2xl p-3 md:p-4 lg:p-6 hover-scale cursor-pointer mobile-small-card"
+                            onclick="nextVowel2()">
+                            <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-white letter-display mb-2"
+                                id="vowel2">A</div>
+                            <div class="text-white/90 text-xs md:text-sm mb-1" id="vowel2-thai">แทน "อะ"</div>
+                            <div class="text-white/80 text-xs">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+
+                    <!-- Final Consonant Section -->
+                    <div class="text-center">
+                        <h2 class="text-base md:text-lg lg:text-2xl font-semibold text-gray-700 mb-3">ตัวสะกด</h2>
+                        <div class="bg-gradient-to-br from-orange-500 to-yellow-500 rounded-xl md:rounded-2xl p-3 md:p-4 lg:p-6 hover-scale cursor-pointer mobile-small-card"
+                            onclick="nextFinal()">
+                            <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-white letter-display mb-2"
+                                id="final">D</div>
+                            <div class="text-white/90 text-xs md:text-sm mb-1" id="final-thai">แทน "ด"</div>
+                            <div class="text-white/80 text-xs">คลิกเพื่อเปลี่ยน</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Combined Display -->
+                <div class="text-center mt-6 md:mt-8">
+                    <div
+                        class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6 mb-3 md:mb-4">
+                        <div class="text-3xl md:text-4xl lg:text-5xl font-bold text-white letter-display mb-2"
+                            id="combined2">BAD</div>
+                        <div class="text-white/80 text-base md:text-lg">คำที่เกิดขึ้น</div>
+                    </div>
+
+                    <!-- Pronunciation -->
+                    <div class="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4 mb-3 md:mb-4">
+                        <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">การออกเสียง</div>
+                        <div class="text-xl md:text-2xl text-blue-600 font-medium" id="pronunciation2">แบด</div>
+                    </div>
+
+                    <!-- Meaning -->
+                    <div class="bg-yellow-50 rounded-lg md:rounded-xl p-3 md:p-4 mb-3 md:mb-4">
+                        <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">ความหมาย</div>
+                        <div class="text-xl md:text-2xl text-green-600 font-medium" id="meaning">ไม่ดี, แย่</div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-center gap-4 mb-4">
+                        <button onclick="prevWord()"
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            ← คำก่อนหน้า
+                        </button>
+                        <button onclick="nextWord()"
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            คำถัดไป →
+                        </button>
+                    </div>
+
+                    <!-- Play Sound Button -->
+                    <button onclick="playSound2()"
+                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded-full text-base md:text-lg lg:text-xl hover-scale transition-colors duration-200 pulse-animation mobile-small-btn">
+                        🔊 ฟังเสียง
+                    </button>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-white/20 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 text-white">
+                <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">วิธีใช้งาน:</h3>
+                <ul class="space-y-1 md:space-y-2 text-white/90 text-sm md:text-base">
+                    <li>• คลิกที่ตัวอักษร สระ หรือตัวสะกดเพื่อเปลี่ยนคำ</li>
+                    <li>• ใช้ปุ่ม "คำก่อนหน้า" และ "คำถัดไป" เพื่อเลื่อนดูคำศัพท์</li>
+                    <li>• กดปุ่ม "ฟังเสียง" เพื่อฟังการออกเสียง</li>
+                    <li>• ดูการออกเสียงและความหมายเป็นภาษาไทยด้านล่าง</li>
+                    <li>• แบบฝึกหัดนี้แสดงเฉพาะคำศัพท์ที่มีความหมายเท่านั้น</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Exercise 4 Content (New) -->
+        <div id="exercise4" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-6 md:mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full mb-3 md:mb-4 transition-colors mobile-small-btn">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">🌟 แบบฝึกหัดที่ 4</h1>
+                <p class="text-white/80 text-base md:text-lg">เรียนรู้คำที่มีสระคู่ พร้อมคำอ่านและความหมาย</p>
+            </div>
+
+            <!-- Vowel Selection Menu -->
+            <div id="vowelSelection"
+                class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                <div class="text-center mb-6 md:mb-8">
+                    <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 md:mb-4">
+                        เลือกสระคู่ที่ต้องการเรียน</h2>
+                    <p class="text-gray-600 text-sm md:text-base">เลือกสระคู่เพื่อดูคำศัพท์และเรียนรู้การออกเสียง</p>
+                </div>
+
+                <!-- A Long Vowel Patterns -->
+                <div class="mb-6 md:mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold text-purple-700 mb-3 md:mb-4 text-center">สระคู่เสียง A
+                        ยาว</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
+                        <button onclick="selectVowelPattern('a_e')"
+                            class="vowel-btn bg-gradient-to-r from-purple-400 to-purple-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            a_e
+                        </button>
+                        <button onclick="selectVowelPattern('ai')"
+                            class="vowel-btn bg-gradient-to-r from-purple-400 to-purple-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            ai
+                        </button>
+                        <button onclick="selectVowelPattern('ay')"
+                            class="vowel-btn bg-gradient-to-r from-purple-400 to-purple-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            ay
+                        </button>
+                    </div>
+                </div>
+
+                <!-- E Long Vowel Patterns -->
+                <div class="mb-6 md:mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold text-blue-700 mb-3 md:mb-4 text-center">สระคู่เสียง E
+                        ยาว</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
+                        <button onclick="selectVowelPattern('ee')"
+                            class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            ee
+                        </button>
+                        <button onclick="selectVowelPattern('ea')"
+                            class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            ea
+                        </button>
+                        <button onclick="selectVowelPattern('e_e')"
+                            class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            e_e
+                        </button>
+                    </div>
+                </div>
+
+                <!-- I Long Vowel Patterns -->
+                <div class="mb-6 md:mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold text-green-700 mb-3 md:mb-4 text-center">สระคู่เสียง I
+                        ยาว</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
+                        <button onclick="selectVowelPattern('i_e')"
+                            class="vowel-btn bg-gradient-to-r from-green-400 to-green-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            i_e
+                        </button>
+                        <button onclick="selectVowelPattern('igh')"
+                            class="vowel-btn bg-gradient-to-r from-green-400 to-green-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            igh
+                        </button>
+                        <button onclick="selectVowelPattern('y')"
+                            class="vowel-btn bg-gradient-to-r from-green-400 to-green-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            y
+                        </button>
+                    </div>
+                </div>
+
+                <!-- O Long Vowel Patterns -->
+                <div class="mb-6 md:mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold text-yellow-700 mb-3 md:mb-4 text-center">สระคู่เสียง O
+                        ยาว</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6">
+                        <button onclick="selectVowelPattern('o_e')"
+                            class="vowel-btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            o_e
+                        </button>
+                        <button onclick="selectVowelPattern('oa')"
+                            class="vowel-btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            oa
+                        </button>
+                        <button onclick="selectVowelPattern('ow')"
+                            class="vowel-btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            ow
+                        </button>
+                    </div>
+                </div>
+
+                <!-- U Long Vowel Patterns -->
+                <div class="mb-6 md:mb-8">
+                    <h3 class="text-lg md:text-xl font-semibold text-red-700 mb-3 md:mb-4 text-center">สระคู่เสียง U ยาว
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                        <button onclick="selectVowelPattern('u_e')"
+                            class="vowel-btn bg-gradient-to-r from-red-400 to-red-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            u_e
+                        </button>
+                        <button onclick="selectVowelPattern('ue')"
+                            class="vowel-btn bg-gradient-to-r from-red-400 to-red-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            ue
+                        </button>
+                        <button onclick="selectVowelPattern('oo')"
+                            class="vowel-btn bg-gradient-to-r from-red-400 to-red-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">
+                            oo
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Word Display Section (Initially Hidden) -->
+            <div id="wordDisplaySection" class="hidden">
+                <!-- Back Button -->
+                <div class="text-center mb-4">
+                    <button onclick="backToVowelSelection()"
+                        class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full transition-colors mobile-small-btn">
+                        ← กลับไปเลือกสระคู่
+                    </button>
+                </div>
+
+                <!-- Main Card -->
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                    <div class="text-center mb-6 md:mb-8">
+                        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 md:mb-4"
+                            id="patternTitle">คำที่มีสระคู่ (a_e)</h2>
+                        <p class="text-gray-600 text-sm md:text-base">เรียนรู้คำศัพท์ภาษาอังกฤษที่มีรูปแบบสระคู่
+                            พร้อมคำอ่านภาษาไทยและความหมาย</p>
+                    </div>
+
+                    <!-- Word Display -->
+                    <div
+                        class="bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl md:rounded-2xl p-4 md:p-6 mb-4 md:mb-6">
+                        <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-white letter-display mb-3 md:mb-4 text-center"
+                            id="wordDisplay">CAKE</div>
+                        <div class="text-white/80 text-base md:text-lg text-center">คำศัพท์ภาษาอังกฤษ</div>
+                    </div>
+
+                    <!-- Pronunciation and Meaning -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+                        <div class="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4">
+                            <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">คำอ่านภาษาไทย</div>
+                            <div class="text-xl md:text-2xl text-blue-600 font-medium text-center"
+                                id="thaiPronunciation">เค้ก</div>
+                        </div>
+                        <div class="bg-yellow-50 rounded-lg md:rounded-xl p-3 md:p-4">
+                            <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">ความหมาย</div>
+                            <div class="text-xl md:text-2xl text-green-600 font-medium text-center" id="wordMeaning">
+                                เค้ก, ขนมเค้ก</div>
+                        </div>
+                    </div>
+
+                    <!-- Pattern Explanation -->
+                    <div class="bg-blue-50 rounded-lg md:rounded-xl p-3 md:p-4 mb-4 md:mb-6">
+                        <div class="text-lg md:text-xl font-semibold text-gray-700 mb-2" id="patternExplanationTitle">
+                            รูปแบบสระคู่ a_e</div>
+                        <p class="text-gray-600 text-sm md:text-base" id="patternExplanation">
+                            รูปแบบ a_e เป็นรูปแบบสระคู่ที่พบได้บ่อยในภาษาอังกฤษ
+                            โดยตัว e ด้านหลังจะไม่ออกเสียง แต่ทำให้สระ a ออกเสียงเป็นเสียงยาว (เอ)
+                        </p>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-center gap-4 mb-4">
+                        <button onclick="prevA_E_Word()"
+                            class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            ← คำก่อนหน้า
+                        </button>
+                        <button onclick="nextA_E_Word()"
+                            class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            คำถัดไป →
+                        </button>
+                    </div>
+
+                    <!-- Play Sound Button -->
+                    <div class="text-center">
+                        <button onclick="playA_E_Sound()"
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded-full text-base md:text-lg lg:text-xl hover-scale transition-colors duration-200 pulse-animation mobile-small-btn">
+                            🔊 ฟังเสียง
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 text-white">
+                    <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">วิธีใช้งาน:</h3>
+                    <ul class="space-y-1 md:space-y-2 text-white/90 text-sm md:text-base">
+                        <li>• ใช้ปุ่ม "คำก่อนหน้า" และ "คำถัดไป" เพื่อเลื่อนดูคำศัพท์</li>
+                        <li>• กดปุ่ม "ฟังเสียง" เพื่อฟังการออกเสียงภาษาอังกฤษ</li>
+                        <li>• ดูคำอ่านภาษาไทยและความหมายด้านล่าง</li>
+                        <li>• เรียนรู้รูปแบบสระคู่ที่ทำให้สระออกเสียงยาว</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 5 Content -->
+        <div id="exercise5" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-6 md:mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full mb-3 md:mb-4 transition-colors mobile-small-btn">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">🔠 แบบฝึกหัดที่ 5</h1>
+                <p class="text-white/80 text-base md:text-lg">เรียนรู้พยัญชนะคู่และการออกเสียง</p>
+            </div>
+
+            <!-- Consonant Selection Menu -->
+            <div id="consonantSelection"
+                class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                <div class="text-center mb-6 md:mb-8">
+                    <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 md:mb-4">
+                        เลือกพยัญชนะคู่ที่ต้องการเรียน</h2>
+                    <p class="text-gray-600 text-sm md:text-base">เลือกพยัญชนะคู่เพื่อดูคำศัพท์และเรียนรู้การออกเสียง
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 vowel-grid">
+                    <button onclick="selectConsonantPair('ch')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">ch</button>
+                    <button onclick="selectConsonantPair('sh')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">sh</button>
+                    <button onclick="selectConsonantPair('th')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">th</button>
+                    <button onclick="selectConsonantPair('ph')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">ph</button>
+                    <button onclick="selectConsonantPair('gh')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">gh</button>
+                    <button onclick="selectConsonantPair('wh')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">wh</button>
+                    <button onclick="selectConsonantPair('ck')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">ck</button>
+                    <button onclick="selectConsonantPair('ng')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">ng</button>
+                    <button onclick="selectConsonantPair('qu')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-3 px-4 rounded-lg transition-all hover-scale">qu</button>
+                </div>
+            </div>
+
+            <!-- Word Display Section (Initially Hidden) -->
+            <div id="consonantWordDisplaySection" class="hidden">
+                <div class="text-center mb-4">
+                    <button onclick="backToConsonantSelection()"
+                        class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full transition-colors mobile-small-btn">
+                        ← กลับไปเลือกพยัญชนะคู่
+                    </button>
+                </div>
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                    <div class="text-center mb-6 md:mb-8">
+                        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 md:mb-4"
+                            id="consonantPairTitle">พยัญชนะคู่ (ch)</h2>
+                        <p class="text-gray-600 text-sm md:text-base">เรียนรู้คำศัพท์ภาษาอังกฤษที่มีพยัญชนะคู่
+                            พร้อมคำอ่านภาษาไทยและความหมาย</p>
+                    </div>
+                    <div
+                        class="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl md:rounded-2xl p-4 md:p-6 mb-4 md:mb-6">
+                        <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-white letter-display mb-3 md:mb-4 text-center"
+                            id="consonantWordDisplay">CHIN</div>
+                        <div class="text-white/80 text-base md:text-lg text-center">คำศัพท์ภาษาอังกฤษ</div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+                        <div class="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4">
+                            <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">คำอ่านภาษาไทย</div>
+                            <div class="text-xl md:text-2xl text-blue-600 font-medium text-center"
+                                id="consonantThaiPronunciation">ชิน</div>
+                        </div>
+                        <div class="bg-yellow-50 rounded-lg md:rounded-xl p-3 md:p-4">
+                            <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">ความหมาย</div>
+                            <div class="text-xl md:text-2xl text-green-600 font-medium text-center"
+                                id="consonantWordMeaning">คาง</div>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 rounded-lg md:rounded-xl p-3 md:p-4 mb-4 md:mb-6">
+                        <div class="text-lg md:text-xl font-semibold text-gray-700 mb-2"
+                            id="consonantPatternExplanationTitle">พยัญชนะคู่ ch</div>
+                        <p class="text-gray-600 text-sm md:text-base" id="consonantPatternExplanation">
+                            พยัญชนะคู่ ch มักออกเสียงเป็น "ช" ในภาษาอังกฤษ
+                        </p>
+                    </div>
+                    <div class="flex justify-center gap-4 mb-4">
+                        <button onclick="prevConsonantWord()"
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            ← คำก่อนหน้า
+                        </button>
+                        <button onclick="nextConsonantWord()"
+                            class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            คำถัดไป →
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <button onclick="playConsonantSound()"
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded-full text-base md:text-lg lg:text-xl hover-scale transition-colors duration-200 pulse-animation mobile-small-btn">
+                            🔊 ฟังเสียง
+                        </button>
+                    </div>
+                </div>
+                <div class="bg-white/20 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 text-white">
+                    <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">วิธีใช้งาน:</h3>
+                    <ul class="space-y-1 md:space-y-2 text-white/90 text-sm md:text-base">
+                        <li>• ใช้ปุ่ม "คำก่อนหน้า" และ "คำถัดไป" เพื่อเลื่อนดูคำศัพท์</li>
+                        <li>• กดปุ่ม "ฟังเสียง" เพื่อฟังการออกเสียงภาษาอังกฤษ</li>
+                        <li>• ดูคำอ่านภาษาไทยและความหมายด้านล่าง</li>
+                        <li>• เรียนรู้พยัญชนะคู่และการออกเสียง</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Exercise 6 Content -->
+        <div id="exercise6" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-6 md:mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full mb-3 md:mb-4 transition-colors mobile-small-btn">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">📝 แบบฝึกหัดที่ 6</h1>
+                <p class="text-white/80 text-base md:text-lg">เรียนรู้การเติม -ing, -s/-es, -ed พร้อมคำอ่านและความหมาย
+                </p>
+            </div>
+
+            <!-- Suffix Selection Menu -->
+            <div id="suffixSelection"
+                class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                <div class="text-center mb-6 md:mb-8">
+                    <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 md:mb-4">
+                        เลือกรูปแบบการเติมที่ต้องการเรียน</h2>
+                    <p class="text-gray-600 text-sm md:text-base">เลือกรูปแบบการเติมเพื่อดูคำศัพท์และเรียนรู้การออกเสียง
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                    <button onclick="selectSuffixType('ing')"
+                        class="vowel-btn bg-gradient-to-r from-teal-400 to-teal-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        การเติม -ing
+                    </button>
+                    <button onclick="selectSuffixType('s_es')"
+                        class="vowel-btn bg-gradient-to-r from-cyan-400 to-cyan-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        การเติม -s/-es
+                    </button>
+                    <button onclick="selectSuffixType('ed')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        การเติม -ed
+                    </button>
+                </div>
+            </div>
+
+            <!-- Word Display Section (Initially Hidden) -->
+            <div id="suffixWordDisplaySection" class="hidden">
+                <div class="text-center mb-4">
+                    <button onclick="backToSuffixSelection()"
+                        class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full transition-colors mobile-small-btn">
+                        ← กลับไปเลือกรูปแบบการเติม
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                    <div class="text-center mb-6 md:mb-8">
+                        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 md:mb-4"
+                            id="suffixTitle">การเติม -ing</h2>
+                        <p class="text-gray-600 text-sm md:text-base">เรียนรู้คำศัพท์ภาษาอังกฤษที่มีการเติมคำลงท้าย
+                            พร้อมคำอ่านภาษาไทยและความหมาย</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+                        <!-- Original Word -->
+                        <div class="bg-gradient-to-br from-teal-500 to-teal-700 rounded-xl md:rounded-2xl p-4 md:p-6">
+                            <div class="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">คำเดิม</div>
+                            <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2" id="originalWord">
+                                WALK</div>
+                            <div class="text-white/90 text-sm md:text-base mb-1" id="originalPronunciation">วอล์ค</div>
+                            <div class="text-white/80 text-xs md:text-sm">คำอ่านภาษาไทย</div>
+                        </div>
+
+                        <!-- Word with Suffix -->
+                        <div class="bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-xl md:rounded-2xl p-4 md:p-6">
+                            <div class="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">คำที่เติม</div>
+                            <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2" id="suffixWord">
+                                WALKING</div>
+                            <div class="text-white/90 text-sm md:text-base mb-1" id="suffixPronunciation">วอล์ค-คิง
+                            </div>
+                            <div class="text-white/80 text-xs md:text-sm">คำอ่านภาษาไทย</div>
+                        </div>
+                    </div>
+
+                    <!-- Meaning and Rule -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+                        <div class="bg-yellow-50 rounded-lg md:rounded-xl p-3 md:p-4">
+                            <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">ความหมาย</div>
+                            <div class="text-xl md:text-2xl text-green-600 font-medium text-center" id="suffixMeaning">
+                                เดิน</div>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg md:rounded-xl p-3 md:p-4">
+                            <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">กฎการเติม</div>
+                            <div class="text-sm md:text-base text-gray-600" id="suffixRule">
+                                เติม -ing ท้ายคำกริยาเพื่อแสดงการกระทำที่กำลังเกิดขึ้น
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example Sentence -->
+                    <div class="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4 mb-4 md:mb-6">
+                        <div class="text-lg md:text-xl font-semibold text-gray-700 mb-2">ตัวอย่างประโยค</div>
+                        <div class="text-lg md:text-xl text-blue-600 font-medium mb-2" id="exampleSentence">I am walking
+                            to school.</div>
+                        <div class="text-gray-600 text-sm md:text-base" id="exampleTranslation">ฉันกำลังเดินไปโรงเรียน
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex justify-center gap-4 mb-4">
+                        <button onclick="prevSuffixWord()"
+                            class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            ← คำก่อนหน้า
+                        </button>
+                        <button onclick="nextSuffixWord()"
+                            class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            คำถัดไป →
+                        </button>
+                    </div>
+
+                    <!-- Play Sound Buttons -->
+                    <div class="flex justify-center gap-4">
+                        <button onclick="playOriginalSound()"
+                            class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            🔊 ฟังเสียงคำเดิม
+                        </button>
+                        <button onclick="playSuffixSound()"
+                            class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            🔊 ฟังเสียงคำที่เติม
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Instructions -->
+                <div class="bg-white/20 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 text-white">
+                    <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">วิธีใช้งาน:</h3>
+                    <ul class="space-y-1 md:space-y-2 text-white/90 text-sm md:text-base">
+                        <li>• ใช้ปุ่ม "คำก่อนหน้า" และ "คำถัดไป" เพื่อเลื่อนดูคำศัพท์</li>
+                        <li>• กดปุ่ม "ฟังเสียง" เพื่อฟังการออกเสียงภาษาอังกฤษ</li>
+                        <li>• ดูคำอ่านภาษาไทยและความหมายด้านล่าง</li>
+                        <li>• เรียนรู้กฎการเติมคำลงท้ายในภาษาอังกฤษ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercise 7 Content -->
+        <div id="exercise7" class="hidden">
+            <!-- Header -->
+            <div class="text-center mb-6 md:mb-8">
+                <button onclick="goToMenu()"
+                    class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full mb-3 md:mb-4 transition-colors mobile-small-btn">
+                    ← กลับหน้าหลัก
+                </button>
+                <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">📚 แบบฝึกหัดที่ 7</h1>
+                <p class="text-white/80 text-base md:text-lg">เรียนรู้คำศัพท์ภาษาอังกฤษแบ่งตามหมวดหมู่</p>
+            </div>
+
+            <!-- Category Selection Menu -->
+            <div id="categorySelection"
+                class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                <div class="text-center mb-6 md:mb-8">
+                    <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 md:mb-4">
+                        เลือกหมวดหมู่คำศัพท์ที่ต้องการเรียน</h2>
+                    <p class="text-gray-600 text-sm md:text-base">เลือกหมวดหมู่เพื่อดูคำศัพท์และเรียนรู้การออกเสียง</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                    <button onclick="selectCategory('food')"
+                        class="vowel-btn bg-gradient-to-r from-red-400 to-red-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        อาหาร
+                    </button>
+                    <button onclick="selectCategory('clothing')"
+                        class="vowel-btn bg-gradient-to-r from-blue-400 to-blue-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        เสื้อผ้า
+                    </button>
+                    <button onclick="selectCategory('family')"
+                        class="vowel-btn bg-gradient-to-r from-green-400 to-green-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        ครอบครัว
+                    </button>
+                    <button onclick="selectCategory('school')"
+                        class="vowel-btn bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        โรงเรียน
+                    </button>
+                    <button onclick="selectCategory('transportation')"
+                        class="vowel-btn bg-gradient-to-r from-purple-400 to-purple-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        ยานพาหนะ
+                    </button>
+                    <button onclick="selectCategory('animals')"
+                        class="vowel-btn bg-gradient-to-r from-indigo-400 to-indigo-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        สัตว์
+                    </button>
+                    <button onclick="selectCategory('stationery')"
+                        class="vowel-btn bg-gradient-to-r from-pink-400 to-pink-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        อุปกรณ์การเรียน
+                    </button>
+                    <button onclick="selectCategory('hobbies')"
+                        class="vowel-btn bg-gradient-to-r from-teal-400 to-teal-600 text-white font-bold py-4 px-6 rounded-lg transition-all hover-scale text-lg">
+                        งานอดิเรก
+                    </button>
+                </div>
+            </div>
+
+            <!-- Word Display Section (Initially Hidden) -->
+            <div id="categoryWordDisplaySection" class="hidden">
+                <div class="text-center mb-4">
+                    <button onclick="backToCategorySelection()"
+                        class="bg-white/20 hover:bg-white/30 text-white px-3 py-1 md:px-4 md:py-2 rounded-full transition-colors mobile-small-btn">
+                        ← กลับไปเลือกหมวดหมู่
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-2xl md:rounded-3xl card-shadow p-4 md:p-6 lg:p-8 mb-4 md:mb-6">
+                    <div class="text-center mb-6 md:mb-8">
+                        <h2 class="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-3 md:mb-4"
+                            id="categoryTitle">
+                            หมวดหมู่: อาหาร</h2>
+                        <p class="text-gray-600 text-sm md:text-base">เรียนรู้คำศัพท์ภาษาอังกฤษในหมวดหมู่นี้
+                            พร้อมคำอ่านภาษาไทยและความหมาย</p>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-r from-red-500 to-orange-600 rounded-xl md:rounded-2xl p-4 md:p-6 mb-4 md:mb-6">
+                        <div class="text-4xl md:text-5xl lg:text-6xl font-bold text-white letter-display mb-3 md:mb-4 text-center"
+                            id="categoryWordDisplay">APPLE</div>
+                        <div class="text-white/80 text-base md:text-lg text-center">คำศัพท์ภาษาอังกฤษ</div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+                        <div class="bg-gray-50 rounded-lg md:rounded-xl p-3 md:p-4">
+                            <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">คำอ่านภาษาไทย</div>
+                            <div class="text-xl md:text-2xl text-blue-600 font-medium text-center"
+                                id="categoryThaiPronunciation">
+                                แอป-เปิ้ล</div>
+                        </div>
+                        <div class="bg-yellow-50 rounded-lg md:rounded-xl p-3 md:p-4">
+                            <div class="text-lg md:text-xl font-semibold text-gray-700 mb-1 md:mb-2">ความหมาย</div>
+                            <div class="text-xl md:text-2xl text-green-600 font-medium text-center"
+                                id="categoryWordMeaning">
+                                แอปเปิ้ล</div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center gap-4 mb-4">
+                        <button onclick="prevCategoryWord()"
+                            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            ← คำก่อนหน้า
+                        </button>
+                        <button onclick="nextCategoryWord()"
+                            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full transition-colors mobile-small-btn">
+                            คำถัดไป →
+                        </button>
+                    </div>
+
+                    <div class="text-center">
+                        <button onclick="playCategorySound()"
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 md:py-3 md:px-6 lg:py-4 lg:px-8 rounded-full text-base md:text-lg lg:text-xl hover-scale transition-colors duration-200 pulse-animation mobile-small-btn">
+                            🔊 ฟังเสียง
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white/20 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 text-white">
+                    <h3 class="text-lg md:text-xl font-semibold mb-2 md:mb-3">วิธีใช้งาน:</h3>
+                    <ul class="space-y-1 md:space-y-2 text-white/90 text-sm md:text-base">
+                        <li>• ใช้ปุ่ม "คำก่อนหน้า" และ "คำถัดไป" เพื่อเลื่อนดูคำศัพท์</li>
+                        <li>• กดปุ่ม "ฟังเสียง" เพื่อฟังการออกเสียงภาษาอังกฤษ</li>
+                        <li>• ดูคำอ่านภาษาไทยและความหมายด้านล่าง</li>
+                        <li>• เรียนรู้คำศัพท์ภาษาอังกฤษในหมวดหมู่ต่างๆ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <audio id="ttsAudio"></audio>
+
+    <script>
+
+        // ฟังก์ชันสำหรับเริ่มแอปพลิเคชัน (ซ่อนหน้าปกและแสดงเมนูหลัก)
+        function startApplication() {
+            document.getElementById('coverPage').classList.add('hidden');
+            document.getElementById('mainMenu').classList.remove('hidden');
+        }
+
+        // ฟังก์ชันสำหรับกลับไปที่หน้าปก
+        function backToCover() {
+            document.getElementById('coverPage').classList.remove('hidden');
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.add('hidden');
+            document.getElementById('exercise6').classList.add('hidden');
+        }
+
+        // Navigation functions
+        function startExercise1() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.remove('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.add('hidden');
+            updatePracticeLetter();
+        }
+
+        function startExercise2() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.remove('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.add('hidden');
+            updateDisplay();
+        }
+
+        function startExercise3() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.remove('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.add('hidden');
+            updateDisplay2();
+        }
+
+        function startExercise4() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.remove('hidden');
+            document.getElementById('vowelSelection').classList.remove('hidden');
+            document.getElementById('wordDisplaySection').classList.add('hidden');
+        }
+
+        function startExercise5() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.remove('hidden');
+            document.getElementById('consonantSelection').classList.remove('hidden');
+            document.getElementById('consonantWordDisplaySection').classList.add('hidden');
+        }
+
+        function goToMenu() {
+            document.getElementById('mainMenu').classList.remove('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.add('hidden');
+        }
+
+        // Exercise 1 variables and functions
+        const alphabetLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const thaiPronunciations = {
+            'A': 'แทน "เอ,เเอ,อะ,อา"', 'B': 'แทน "บ"', 'C': 'แทน "ค,ซ"', 'D': 'แทน "ด,ฏ"', 'E': 'แทน "อิ,อี"',
+            'F': 'แทน "ฟ,ฝ"', 'G': 'แทน "ก,จ"', 'H': 'แทน "ห,ฮ"', 'I': 'แทน "อิ,อี,ไอ"', 'J': 'แทน "จ"',
+            'K': 'แทน "ค,ก"', 'L': 'แทน "ล,ฬ"', 'M': 'แทน "ม"', 'N': 'แทน "น"', 'O': 'แทน "โอ,อ"',
+            'P': 'แทน "ป,พ,ภ,ผ"', 'Q': 'แทน "คว"', 'R': 'แทน "ร,ฤ"', 'S': 'แทน "ส,ษ,ศ"', 'T': 'แทน "ต,ท,ธ,ฒ,ฐ,ฑ"',
+            'U': 'แทน "อุ,อู"', 'V': 'แทน "ว"', 'W': 'แทน "ว"', 'X': 'แทน "กซ,ซ"', 'Y': 'แทน "ย,ญ,ไอ,อี"', 'Z': 'แทน "ซ"'
+        };
+
+        let currentLetterIndex = 0;
+
+        function updatePracticeLetter() {
+            const letter = alphabetLetters[currentLetterIndex];
+            document.getElementById('practiceLetter').textContent = letter;
+            document.getElementById('practiceThai').textContent = thaiPronunciations[letter];
+        }
+
+        function nextPracticeLetter() {
+            currentLetterIndex = (currentLetterIndex + 1) % alphabetLetters.length;
+            updatePracticeLetter();
+        }
+
+        // ฟังก์ชันใช้ Google TTS API สำหรับการออกเสียง
+        function playGoogleTTS(text, callback) {
+            const audio = document.getElementById('ttsAudio');
+            const url = `/.netlify/functions/tts?text=${encodeURIComponent(text)}`;
+            audio.src = url;
+            audio.onended = callback;
+            audio.play().catch(e => console.log("Audio play error:", e));
+        }
+
+        function playLetterSound() {
+            const letter = alphabetLetters[currentLetterIndex];
+            playGoogleTTS(letter);
+        }
+
+        // Exercise 2 variables and functions
+        const consonants = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+        const vowels = ['A', 'E', 'I', 'O', 'U'];
+        const vowelPronunciations = {
+            'A': 'อะ, เอ, แอ, อา', 'E': 'เอ, อี, อิ', 'I': 'ไอ, อี, อิ', 'O': 'โอ, ออ, อ', 'U': 'ยู, อู, อุ'
+        };
+
+        let currentConsonantIndex = 0;
+        let currentVowelIndex = 0;
+
+        // อัปเดต pronunciationMap เพื่อเพิ่มการออกเสียงแบบ Phoenix
+        const pronunciationMap = {
+            'AA': 'อา', 'AE': 'เอ', 'AI': 'ไอ', 'AO': 'เอา', 'AU': 'อู',
+            'BA': 'บา', 'BE': 'บี', 'BI': 'ไบ', 'BO': 'โบ', 'BU': 'บู',
+            'CA': 'คา', 'CE': 'ซี', 'CI': 'ซี', 'CO': 'โค', 'CU': 'คู',
+            'DA': 'ดา', 'DE': 'เด', 'DI': 'ดี', 'DO': 'โด', 'DU': 'ดู',
+            'EA': 'เอ', 'EE': 'อี', 'EI': 'เอ', 'EO': 'โอ', 'EU': 'อู',
+            'FA': 'ฟา', 'FE': 'เฟ', 'FI': 'ไฟ', 'FO': 'โฟ', 'FU': 'ฟู',
+            'GA': 'กา', 'GE': 'จี', 'GI': 'จี', 'GO': 'โก', 'GU': 'กู',
+            'HA': 'ฮา', 'HE': 'ฮี', 'HI': 'ไฮ', 'HO': 'โฮ', 'HU': 'ฮู',
+            'IA': 'เอีย', 'IE': 'อี', 'II': 'อี', 'IO': 'อิโอ', 'IU': 'อิว',
+            'JA': 'จา', 'JE': 'เจ', 'JI': 'จี', 'JO': 'โจ', 'JU': 'จู',
+            'KA': 'คา', 'KE': 'เค', 'KI': 'คี', 'KO': 'โค', 'KU': 'คู',
+            'LA': 'ลา', 'LE': 'เล', 'LI': 'ลี', 'LO': 'โล', 'LU': 'ลู',
+            'MA': 'มา', 'ME': 'มี', 'MI': 'ไม', 'MO': 'โม', 'MU': 'มู',
+            'NA': 'นา', 'NE': 'เน', 'NI': 'นี', 'NO': 'โน', 'NU': 'นู',
+            'OA': 'โอ', 'OE': 'โอ', 'OI': 'ออย', 'OO': 'อู', 'OU': 'เอา',
+            'PA': 'พา', 'PE': 'เพ', 'PI': 'ไพ', 'PO': 'โพ', 'PU': 'พู',
+            'QA': 'คา', 'QE': 'เค', 'QI': 'คิ', 'QO': 'โคว', 'QU': 'คู',
+            'RA': 'รา', 'RE': 'รี', 'RI': 'รี', 'RO': 'โร', 'RU': 'รู',
+            'SA': 'ซา', 'SE': 'เซ', 'SI': 'ซี', 'SO': 'โซ', 'SU': 'ซู',
+            'TA': 'ทา', 'TE': 'เท', 'TI': 'ที', 'TO': 'ทู', 'TU': 'ทู',
+            'UA': 'วา', 'UE': 'อู', 'UI': 'อุย', 'UO': 'โอ', 'UU': 'อู',
+            'VA': 'วา', 'VE': 'เว', 'VI': 'วี', 'VO': 'โว', 'VU': 'วู',
+            'WA': 'วา', 'WE': 'วี', 'WI': 'ไว', 'WO': 'โว', 'WU': 'วู',
+            'XA': 'ซา', 'XE': 'ซี', 'XI': 'ซี', 'XO': 'โซ', 'XU': 'ซู',
+            'YA': 'ยา', 'YE': 'เย', 'YI': 'ยี', 'YO': 'โย', 'YU': 'ยู',
+            'ZA': 'ซา', 'ZE': 'ซี', 'ZI': 'ซี', 'ZO': 'โซ', 'ZU': 'ซู',
+
+        };
+
+        // การแมปสำหรับการออกเสียงจริง (TTS)
+        const ttsPronunciationMap = {
+            'FA': 'fah', 'BU' : 'boo', 'CA' : 'kaa', 'CE' : 'see', 'CU' : 'coo', 'EE' : 'e', 'EO' : 'o', 'EU' : 'oo', 'GE' : 'jay', 'GI' : 'gee', 'GU' : 'goo', 'IE' : 'e', 'IO' : 'ee-oh', 'IU' : 'ew', 'MI' : 'mai', 'MU' : 'moo', 'OU' : 'ow', 'RO' : 'roh', 'UA' : 'wa', 'UE' : 'oo', 'UO' : 'oh', 'UU' : 'oo', 'VA' : 'vah', 'WI' : 'wai', 'XA' : 'sa', 'XO' : 'so'// fa ออกเสียงว่า far
+            // สามารถเพิ่มคำอื่นๆ ที่ต้องการให้ออกเสียงต่างจากที่แสดงได้ที่นี่
+        };
+
+        function updateDisplay() {
+            const consonant = consonants[currentConsonantIndex];
+            const vowel = vowels[currentVowelIndex];
+            const combined = consonant + vowel;
+
+            document.getElementById('consonant').textContent = consonant;
+            document.getElementById('consonant-thai').textContent = thaiPronunciations[consonant];
+            document.getElementById('vowel').textContent = vowel;
+            document.getElementById('vowel-thai').textContent = vowelPronunciations[vowel];
+            document.getElementById('combined').textContent = combined;
+
+            // ใช้ pronunciationMap สำหรับแสดงผล
+            document.getElementById('pronunciation').textContent = pronunciationMap[combined] || 'ลองใหม่';
+        }
+
+        function nextConsonant() {
+            currentConsonantIndex = (currentConsonantIndex + 1) % consonants.length;
+            updateDisplay();
+        }
+
+        function nextVowel() {
+            currentVowelIndex = (currentVowelIndex + 1) % vowels.length;
+            updateDisplay();
+        }
+
+        function playSound() {
+            const combined = document.getElementById('combined').textContent;
+
+            // ตรวจสอบว่ามีการออกเสียงพิเศษหรือไม่
+            const ttsText = ttsPronunciationMap[combined] || combined.toLowerCase();
+
+            playGoogleTTS(ttsText);
+        }
+
+        // Exercise 3 variables and functions
+        const words = [
+            { "consonant": "C", "vowel": "A", "final": "T", "word": "CAT", "pronunciation": "แคท", "meaning": "แมว" },
+            { "consonant": "B", "vowel": "A", "final": "T", "word": "BAT", "pronunciation": "แบท", "meaning": "ค้างคาว, ไม้เบสบอล" },
+            { "consonant": "H", "vowel": "A", "final": "T", "word": "HAT", "pronunciation": "แฮท", "meaning": "หมวก" },
+            { "consonant": "M", "vowel": "A", "final": "N", "word": "MAN", "pronunciation": "แมน", "meaning": "ผู้ชาย" },
+            { "consonant": "P", "vowel": "A", "final": "N", "word": "PAN", "pronunciation": "แพน", "meaning": "กระทะ" },
+            { "consonant": "C", "vowel": "A", "final": "P", "word": "CAP", "pronunciation": "แคป", "meaning": "หมวกแก๊ป, ฝาปิด" },
+            { "consonant": "M", "vowel": "A", "final": "P", "word": "MAP", "pronunciation": "แมพ", "meaning": "แผนที่" },
+            { "consonant": "F", "vowel": "A", "final": "N", "word": "FAN", "pronunciation": "แฟน", "meaning": "พัดลม, แฟน" },
+            { "consonant": "R", "vowel": "A", "final": "T", "word": "RAT", "pronunciation": "แรท", "meaning": "หนู" },
+            { "consonant": "B", "vowel": "A", "final": "G", "word": "BAG", "pronunciation": "แบก", "meaning": "กระเป๋า" },
+            { "consonant": "B", "vowel": "E", "final": "D", "word": "BED", "pronunciation": "เบด", "meaning": "เตียง" },
+            { "consonant": "B", "vowel": "E", "final": "T", "word": "BET", "pronunciation": "เบท", "meaning": "พนัน" },
+            { "consonant": "B", "vowel": "E", "final": "G", "word": "BEG", "pronunciation": "เบก", "meaning": "ขอทาน" },
+            { "consonant": "P", "vowel": "E", "final": "N", "word": "PEN", "pronunciation": "เพน", "meaning": "ปากกา" },
+            { "consonant": "M", "vowel": "E", "final": "N", "word": "MEN", "pronunciation": "เมน", "meaning": "ผู้ชาย (พหูพจน์)" },
+            { "consonant": "R", "vowel": "E", "final": "D", "word": "RED", "pronunciation": "เรด", "meaning": "สีแดง" },
+            { "consonant": "N", "vowel": "E", "final": "T", "word": "NET", "pronunciation": "เนท", "meaning": "ตาข่าย" },
+            { "consonant": "S", "vowel": "E", "final": "T", "word": "SET", "pronunciation": "เซท", "meaning": "ชุด, ตั้งค่า" },
+            { "consonant": "T", "vowel": "E", "final": "N", "word": "TEN", "pronunciation": "เทน", "meaning": "สิบ" },
+            { "consonant": "W", "vowel": "E", "final": "B", "word": "WEB", "pronunciation": "เว็บ", "meaning": "ใยแมงมุม, เว็บไซต์" },
+            { "consonant": "B", "vowel": "I", "final": "T", "word": "BIT", "pronunciation": "บิท", "meaning": "เล็กน้อย, บิต" },
+            { "consonant": "B", "vowel": "I", "final": "N", "word": "BIN", "pronunciation": "บิน", "meaning": "ถังขยะ" },
+            { "consonant": "P", "vowel": "I", "final": "N", "word": "PIN", "pronunciation": "พิน", "meaning": "เข็มหมุด" },
+            { "consonant": "B", "vowel": "I", "final": "G", "word": "BIG", "pronunciation": "บิก", "meaning": "ใหญ่" },
+            { "consonant": "P", "vowel": "I", "final": "G", "word": "PIG", "pronunciation": "พิก", "meaning": "หมู" },
+            { "consonant": "L", "vowel": "I", "final": "D", "word": "LID", "pronunciation": "ลิด", "meaning": "ฝาปิด" },
+            { "consonant": "T", "vowel": "I", "final": "P", "word": "TIP", "pronunciation": "ทิป", "meaning": "ปลาย, ทิป" },
+            { "consonant": "F", "vowel": "I", "final": "G", "word": "FIG", "pronunciation": "ฟิก", "meaning": "มะเดื่อ" },
+            { "consonant": "D", "vowel": "I", "final": "G", "word": "DIG", "pronunciation": "ดิก", "meaning": "ขุด" },
+            { "consonant": "W", "vowel": "I", "final": "N", "word": "WIN", "pronunciation": "วิน", "meaning": "ชนะ" },
+            { "consonant": "H", "vowel": "O", "final": "T", "word": "HOT", "pronunciation": "ฮอท", "meaning": "ร้อน" },
+            { "consonant": "P", "vowel": "O", "final": "T", "word": "POT", "pronunciation": "พ็อท", "meaning": "หม้อ" },
+            { "consonant": "D", "vowel": "O", "final": "G", "word": "DOG", "pronunciation": "ด็อก", "meaning": "สุนัข" },
+            { "consonant": "L", "vowel": "O", "final": "G", "word": "LOG", "pronunciation": "ล็อก", "meaning": "ท่อนไม้, บันทึก" },
+            { "consonant": "B", "vowel": "O", "final": "X", "word": "BOX", "pronunciation": "บ็อกซ์", "meaning": "กล่อง" },
+            { "consonant": "F", "vowel": 'O', "final": "X", "word": "FOX", "pronunciation": "ฟ็อกซ์", "meaning": "หมาจิ้งจอก" },
+            { "consonant": "T", "vowel": "O", "final": "P", "word": "TOP", "pronunciation": "ท็อป", "meaning": "บนสุด, ยอด" },
+            { "consonant": "C", "vowel": "O", "final": "T", "word": "COT", "pronunciation": "ค็อท", "meaning": "เตียงเด็ก" },
+            { "consonant": "J", "vowel": "O", "final": "B", "word": "JOB", "pronunciation": "จ็อบ", "meaning": "งาน" },
+            { "consonant": "H", "vowel": "O", "final": "P", "word": "HOP", "pronunciation": "ฮ็อพ", "meaning": "กระโดด" },
+            { "consonant": "B", "vowel": "U", "final": "G", "word": "BUG", "pronunciation": "บัก", "meaning": "แมลง, ข้อผิดพลาด" },
+            { "consonant": "B", "vowel": "U", "final": "S", "word": "BUS", "pronunciation": "บัส", "meaning": "รถบัส" },
+            { "consonant": "B", "vowel": "U", "final": "N", "word": "BUN", "pronunciation": "บัน", "meaning": "ขนมปังนุ่ม" },
+            { "consonant": "C", "vowel": "U", "final": "P", "word": "CUP", "pronunciation": "คัพ", "meaning": "ถ้วย" },
+            { "consonant": "C", "vowel": "U", "final": "T", "word": "CUT", "pronunciation": "คัต", "meaning": "ตัด" },
+            { "consonant": "F", "vowel": "U", "final": "N", "word": "FUN", "pronunciation": "ฟัน", "meaning": "สนุก" },
+            { "consonant": "R", "vowel": "U", "final": "N", "word": "RUN", "pronunciation": "รัน", "meaning": "วิ่ง" },
+            { "consonant": "M", "vowel": "U", "final": "D", "word": "MUD", "pronunciation": "มัด", "meaning": "โคลน" },
+            { "consonant": "S", "vowel": "U", "final": "N", "word": "SUN", "pronunciation": "ซัน", "meaning": "ดวงอาทิตย์" },
+            { "consonant": "N", "vowel": "U", "final": "T", "word": "NUT", "pronunciation": "นัท", "meaning": "ถั่ว" }
+        ];
+
+        let currentWordIndex = 0;
+
+        function updateDisplay2() {
+            const word = words[currentWordIndex];
+            document.getElementById('consonant2').textContent = word.consonant;
+            document.getElementById('consonant2-thai').textContent = thaiPronunciations[word.consonant];
+            document.getElementById('vowel2').textContent = word.vowel;
+            document.getElementById('vowel2-thai').textContent = vowelPronunciations[word.vowel];
+            document.getElementById('final').textContent = word.final;
+            document.getElementById('final-thai').textContent = thaiPronunciations[word.final];
+            document.getElementById('combined2').textContent = word.word;
+            document.getElementById('pronunciation2').textContent = word.pronunciation;
+            document.getElementById('meaning').textContent = word.meaning;
+        }
+
+        function nextWord() {
+            currentWordIndex = (currentWordIndex + 1) % words.length;
+            updateDisplay2();
+        }
+
+        function prevWord() {
+            currentWordIndex = (currentWordIndex - 1 + words.length) % words.length;
+            updateDisplay2();
+        }
+
+        function nextConsonant2() {
+            const currentConsonant = words[currentWordIndex].consonant;
+            const consonants = [...new Set(words.map(w => w.consonant))];
+            let index = consonants.indexOf(currentConsonant);
+            index = (index + 1) % consonants.length;
+
+            // Find the first word with the new consonant
+            const newIndex = words.findIndex(w => w.consonant === consonants[index]);
+            if (newIndex !== -1) {
+                currentWordIndex = newIndex;
+                updateDisplay2();
+            }
+        }
+
+        function nextVowel2() {
+            const currentVowel = words[currentWordIndex].vowel;
+            const vowels = [...new Set(words.map(w => w.vowel))];
+            let index = vowels.indexOf(currentVowel);
+            index = (index + 1) % vowels.length;
+
+            // Find the first word with the new vowel
+            const newIndex = words.findIndex(w => w.vowel === vowels[index]);
+            if (newIndex !== -1) {
+                currentWordIndex = newIndex;
+                updateDisplay2();
+            }
+        }
+
+        function nextFinal() {
+            const currentFinal = words[currentWordIndex].final;
+            const finals = [...new Set(words.map(w => w.final))];
+            let index = finals.indexOf(currentFinal);
+            index = (index + 1) % finals.length;
+
+            // Find the first word with the new final
+            const newIndex = words.findIndex(w => w.final === finals[index]);
+            if (newIndex !== -1) {
+                currentWordIndex = newIndex;
+                updateDisplay2();
+            }
+        }
+
+        function playSound2() {
+            const word = words[currentWordIndex].word;
+            playGoogleTTS(word);
+        }
+
+        // Exercise 4 variables and functions (New)
+        const vowelPatterns = {
+            'a_e': {
+                title: 'คำที่มีสระคู่ (a_e)',
+                explanation: 'รูปแบบ a_e เป็นรูปแบบสระคู่ที่พบได้บ่อยในภาษาอังกฤษ โดยตัว e ด้านหลังจะไม่ออกเสียง แต่ทำให้สระ a ออกเสียงเป็นเสียงยาว (เอ)',
+                words: [
+                    { word: 'CAKE', pronunciation: 'เค้ก', meaning: 'เค้ก, ขนมเค้ก' },
+                    { word: 'MAKE', pronunciation: 'เม้ก', meaning: 'ทำ, สร้าง' },
+                    { word: 'BAKE', pronunciation: 'เบ้ก', meaning: 'อบ (ขนม)' },
+                    { word: 'TAKE', pronunciation: 'เท้ก', meaning: 'เอา, พาไป' },
+                    { word: 'LAKE', pronunciation: 'เล้ก', meaning: 'ทะเลสาบ' },
+                    { word: 'SHAKE', pronunciation: 'เช้ก', meaning: 'เขย่า, สั่น' },
+                    { word: 'WAKE', pronunciation: 'เว้ก', meaning: 'ตื่นนอน' },
+                    { word: 'RAKE', pronunciation: 'เร้ก', meaning: 'คราด' },
+                    { word: 'FAKE', pronunciation: 'เฟ้ก', meaning: 'ปลอม, เทียม' },
+                    { word: 'BRAKE', pronunciation: 'เบร้ก', meaning: 'เบรก, หยุด' }
+                ]
+            },
+            'ai': {
+                title: 'คำที่มีสระคู่ (ai)',
+                explanation: 'รูปแบบ ai มักออกเสียงเป็น "เอ" หรือ "แอ" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'RAIN', pronunciation: 'เรน', meaning: 'ฝน' },
+                    { word: 'MAIL', pronunciation: 'เมล', meaning: 'จดหมาย, ไปรษณีย์' },
+                    { word: 'TRAIN', pronunciation: 'เทรน', meaning: 'รถไฟ, ฝึกหัด' },
+                    { word: 'PAIN', pronunciation: 'เพน', meaning: 'ความเจ็บปวด' },
+                    { word: 'SAIL', pronunciation: 'เซล', meaning: 'แล่นเรือ, ผ้าใบเรือ' },
+                    { word: 'WAIT', pronunciation: 'เวท', meaning: 'รอ, คอย' },
+                    { word: 'CHAIN', pronunciation: 'เชน', meaning: 'โซ่' },
+                    { word: 'PAINT', pronunciation: 'เพนท', meaning: 'สี, วาดภาพ' },
+                    { word: 'BRAIN', pronunciation: 'เบรน', meaning: 'สมอง' },
+                    { word: 'MAIN', pronunciation: 'เมน', meaning: 'หลัก, สำคัญ' }
+                ]
+            },
+            'ay': {
+                title: 'คำที่มีสระคู่ (ay)',
+                explanation: 'รูปแบบ ay มักออกเสียงเป็น "เอ" ในภาษาอังกฤษ มักอยู่ท้ายคำ',
+                words: [
+                    { word: 'PLAY', pronunciation: 'เพล', meaning: 'เล่น, การแสดง' },
+                    { word: 'STAY', pronunciation: 'สเต', meaning: 'พัก, อยู่' },
+                    { word: 'DAY', pronunciation: 'เด', meaning: 'วัน' },
+                    { word: 'WAY', pronunciation: 'เว', meaning: 'ทาง, วิธี' },
+                    { word: 'SAY', pronunciation: 'เซ', meaning: 'พูด' },
+                    { word: 'CLAY', pronunciation: 'เคล', meaning: 'ดินเหนียว' },
+                    { word: 'BAY', pronunciation: 'เบ', meaning: 'อ่าว' },
+                    { word: 'TRAY', pronunciation: 'เทร', meaning: 'ถาด' },
+                    { word: 'MAY', pronunciation: 'เม', meaning: 'อาจจะ, เดือนพฤษภาคม' },
+                    { word: 'LAY', pronunciation: 'เล', meaning: 'วาง, นอน' }
+                ]
+            },
+            'ee': {
+                title: 'คำที่มีสระคู่ (ee)',
+                explanation: 'รูปแบบ ee มักออกเสียงเป็น "อี" ยาวในภาษาอังกฤษ',
+                words: [
+                    { word: 'SEE', pronunciation: 'ซี', meaning: 'มองเห็น' },
+                    { word: 'TREE', pronunciation: 'ทรี', meaning: 'ต้นไม้' },
+                    { word: 'GREEN', pronunciation: 'กรีน', meaning: 'สีเขียว' },
+                    { word: 'THREE', pronunciation: 'ทรี', meaning: 'สาม' },
+                    { word: 'BEE', pronunciation: 'บี', meaning: 'ผึ้ง' },
+                    { word: 'FREE', pronunciation: 'ฟรี', meaning: 'อิสระ, ฟรี' },
+                    { word: 'DEEP', pronunciation: 'ดีพ', meaning: 'ลึก' },
+                    { word: 'WEEK', pronunciation: 'วีค', meaning: 'สัปดาห์' },
+                    { word: 'NEED', pronunciation: 'นิด', meaning: 'ต้องการ' },
+                    { word: 'SLEEP', pronunciation: 'สลีพ', meaning: 'นอน' }
+                ]
+            },
+            'ea': {
+                title: 'คำที่มีสระคู่ (ea)',
+                explanation: 'รูปแบบ ea สามารถออกเสียงได้หลายแบบ เช่น "อี", "เอ", หรือ "เอ"',
+                words: [
+                    { word: 'EAT', pronunciation: 'อีท', meaning: 'กิน' },
+                    { word: 'LEAF', pronunciation: 'ลีฟ', meaning: 'ใบไม้' },
+                    { word: 'CLEAN', pronunciation: 'คลีน', meaning: 'สะอาด' },
+                    { word: 'TEACH', pronunciation: 'ทีช', meaning: 'สอน' },
+                    { word: 'SEAT', pronunciation: 'ซีท', meaning: 'ที่นั่ง' },
+                    { word: 'MEAT', pronunciation: 'มีท', meaning: 'เนื้อสัตว์' },
+                    { word: 'PEACE', pronunciation: 'พีซ', meaning: 'สันติภาพ' },
+                    { word: 'REACH', pronunciation: 'รีช', meaning: 'เอื้อมถึง, ไปถึง' },
+                    { word: 'TEAM', pronunciation: 'ทีม', meaning: 'ทีม' },
+                    { word: 'DREAM', pronunciation: 'ดรีม', meaning: 'ความฝัน' }
+                ]
+            },
+            'e_e': {
+                title: 'คำที่มีสระคู่ (e_e)',
+                explanation: 'รูปแบบ e_e เป็นรูปแบบสระคู่ที่ตัว e ด้านหลังไม่ออกเสียง แต่ทำให้สระ e ออกเสียงเป็นเสียงยาว (อี)',
+                words: [
+                    { word: 'COMPETE', pronunciation: 'คัมพีท', meaning: 'เเข่งขัน' },
+                    { word: 'COMPLETE', pronunciation: 'คัมพลีท', meaning: 'สมบูรณ์, ทำให้เสร็จ' },
+                    { word: 'THEME', pronunciation: 'ธีม', meaning: 'หัวข้อหลัก, แนวคิดหลัก' },
+                    { word: 'THESE', pronunciation: 'ธีซ', meaning: 'เหล่านี้' },
+                    { word: 'SCENE', pronunciation: 'ซีน', meaning: 'ฉาก, ทิวทัศน์' },
+                    { word: 'EXTREME', pronunciation: 'เอ็กซ์ทรีม', meaning: 'สุดขีด, รุนแรง' },
+                    { word: 'DELETE', pronunciation: 'ดีลีท', meaning: 'ลบ' },
+                    { word: 'SEVERE', pronunciation: 'ซีเวียร์', meaning: 'รุนแรง' },
+                    { word: 'CONCRETE', pronunciation: 'คอนครีท', meaning: 'คอนกรีต, ชัดเจน' },
+                    { word: 'GENE', pronunciation: 'จีน', meaning: 'ยีน' }
+                ]
+            },
+            'i_e': {
+                title: 'คำที่มีสระคู่ (i_e)',
+                explanation: 'รูปแบบ i_e เป็นรูปแบบสระคู่ที่ตัว e ด้านหลังไม่ออกเสียง แต่ทำให้สระ i ออกเสียงเป็นเสียงยาว (ไอ)',
+                words: [
+                    { word: 'LIKE', pronunciation: 'ไลค์', meaning: 'ชอบ' },
+                    { word: 'TIME', pronunciation: 'ไทม์', meaning: 'เวลา' },
+                    { word: 'RIDE', pronunciation: 'ไรด์', meaning: 'ขี่, นั่ง' },
+                    { word: 'KITE', pronunciation: 'ไคต์', meaning: 'ว่าว' },
+                    { word: 'FINE', pronunciation: 'ไฟน์', meaning: 'ดี, ปรับ' },
+                    { word: 'NINE', pronunciation: 'ไนน์', meaning: 'เก้า' },
+                    { word: 'LINE', pronunciation: 'ไลน์', meaning: 'เส้น, แถว' },
+                    { word: 'PIPE', pronunciation: 'ไปพ์', meaning: 'ท่อ' },
+                    { word: 'BIKE', pronunciation: 'ไบค์', meaning: 'จักรยาน' },
+                    { word: 'SMILE', pronunciation: 'สไมล์', meaning: 'ยิ้ม' }
+                ]
+            },
+            'igh': {
+                title: 'คำที่มีสระคู่ (igh)',
+                explanation: 'รูปแบบ igh มักออกเสียงเป็น "ไอ" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'HIGH', pronunciation: 'ไฮ', meaning: 'สูง' },
+                    { word: 'LIGHT', pronunciation: 'ไลท์', meaning: 'แสง, เบา' },
+                    { word: 'NIGHT', pronunciation: 'ไนท์', meaning: 'กลางคืน' },
+                    { word: 'RIGHT', pronunciation: 'ไรท์', meaning: 'ขวา, ถูกต้อง' },
+                    { word: 'SIGHT', pronunciation: 'ไซท์', meaning: 'สายตา, ทิวทัศน์' },
+                    { word: 'FLIGHT', pronunciation: 'ไฟลท์', meaning: 'เที่ยวบิน, การบิน' },
+                    { word: 'MIGHT', pronunciation: 'ไมท์', meaning: 'อาจจะ' },
+                    { word: 'BRIGHT', pronunciation: 'ไบรท์', meaning: 'สว่าง' },
+                    { word: 'TIGHT', pronunciation: 'ไทท์', meaning: 'แน่น, คับ' },
+                    { word: 'FIGHT', pronunciation: 'ไฟท์', meaning: 'ต่อสู้' }
+                ]
+            },
+            'y': {
+                title: 'คำที่มีสระคู่ (y)',
+                explanation: 'รูปแบบ y เมื่ออยู่ท้ายคำมักออกเสียงเป็น "ไอ" หรือ "อี" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'MY', pronunciation: 'มาย', meaning: 'ของฉัน' },
+                    { word: 'SKY', pronunciation: 'สกาย', meaning: 'ท้องฟ้า' },
+                    { word: 'FLY', pronunciation: 'ฟลาย', meaning: 'บิน, แมลงวัน' },
+                    { word: 'TRY', pronunciation: 'ทราย', meaning: 'พยายาม, ลอง' },
+                    { word: 'CRY', pronunciation: 'คราย', meaning: 'ร้องไห้' },
+                    { word: 'BY', pronunciation: 'บาย', meaning: 'โดย, ใกล้' },
+                    { word: 'DRY', pronunciation: 'ดราย', meaning: 'แห้ง' },
+                    { word: 'SPY', pronunciation: 'สไป', meaning: 'สายลับ' },
+                    { word: 'WHY', pronunciation: 'วาย', meaning: 'ทำไม' },
+                    { word: 'SHY', pronunciation: 'ชาย', meaning: 'ขี้อาย' }
+                ]
+            },
+            'o_e': {
+                title: 'คำที่มีสระคู่ (o_e)',
+                explanation: 'รูปแบบ o_e เป็นรูปแบบสระคู่ที่ตัว e ด้านหลังไม่ออกเสียง แต่ทำให้สระ o ออกเสียงเป็นเสียงยาว (โอ)',
+                words: [
+                    { word: 'HOME', pronunciation: 'โฮม', meaning: 'บ้าน' },
+                    { word: 'ROPE', pronunciation: 'โรพ', meaning: 'เชือก' },
+                    { word: 'HOPE', pronunciation: 'โฮพ', meaning: 'หวัง' },
+                    { word: 'JOKE', pronunciation: 'โจ๊ค', meaning: 'มุกตลก, ล้อเล่น' },
+                    { word: 'NOTE', pronunciation: 'โน้ต', meaning: 'บันทึก, โน้ตดนตรี' },
+                    { word: 'NOSE', pronunciation: 'โนส', meaning: 'จมูก' },
+                    { word: 'STONE', pronunciation: 'สโตน', meaning: 'หิน' },
+                    { word: 'CONE', pronunciation: 'โคน', meaning: 'กรวย, โคนไอศครีม' },
+                    { word: 'ROSE', pronunciation: 'โรส', meaning: 'กุหลาบ' },
+                    { word: 'VOTE', pronunciation: 'โหวต', meaning: 'เลือก, ออกเสียง' }
+                ]
+            },
+            'oa': {
+                title: 'คำที่มีสระคู่ (oa)',
+                explanation: 'รูปแบบ oa มักออกเสียงเป็น "โอ" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'BOAT', pronunciation: 'โบท', meaning: 'เรือ' },
+                    { word: 'COAT', pronunciation: 'โคท', meaning: 'เสื้อโค้ท' },
+                    { word: 'ROAD', pronunciation: 'โรด', meaning: 'ถนน' },
+                    { word: 'LOAD', pronunciation: 'โหลด', meaning: 'น้ำหนัก, โหลด' },
+                    { word: 'SOAP', pronunciation: 'โซพ', meaning: 'สบู่' },
+                    { word: 'GOAL', pronunciation: 'โกล', meaning: 'เป้าหมาย' },
+                    { word: 'TOAST', pronunciation: 'โทสต์', meaning: 'ขนมปังปิ้ง' },
+                    { word: 'FLOAT', pronunciation: 'โฟลท', meaning: 'ลอย' },
+                    { word: 'COACH', pronunciation: 'โค้ช', meaning: 'ครูฝึก, รถโค้ช' },
+                    { word: 'MOAN', pronunciation: 'โมน', meaning: 'บ่น, คร่ำครวญ' }
+                ]
+            },
+            'ow': {
+                title: 'คำที่มีสระคู่ (ow)',
+                explanation: 'รูปแบบ ow สามารถออกเสียงเป็น "โอ" หรือ "เอา" ได้ในภาษาอังกฤษ',
+                words: [
+                    { word: 'SNOW', pronunciation: 'สโนว์', meaning: 'หิมะ' },
+                    { word: 'GROW', pronunciation: 'โกรว์', meaning: 'เติบโต' },
+                    { word: 'SHOW', pronunciation: 'โชว์', meaning: 'แสดง' },
+                    { word: 'FLOW', pronunciation: 'โฟลว์', meaning: 'ไหล' },
+                    { word: 'BLOW', pronunciation: 'โบลว์', meaning: 'เป่า' },
+                    { word: 'KNOW', pronunciation: 'โนว์', meaning: 'รู้' },
+                    { word: 'THROW', pronunciation: 'โธรว์', meaning: 'ขว้าง' },
+                    { word: 'SLOW', pronunciation: 'สโลว์', meaning: 'ช้า' },
+                    { word: 'BELOW', pronunciation: 'บิโลว์', meaning: 'ด้านล่าง' },
+                    { word: 'ROW', pronunciation: 'โรว์', meaning: 'แถว, พายเรือ' }
+                ]
+            },
+            'u_e': {
+                title: 'คำที่มีสระคู่ (u_e)',
+                explanation: 'รูปแบบ u_e เป็นรูปแบบสระคู่ที่ตัว e ด้านหลังไม่ออกเสียง แต่ทำให้สระ u ออกเสียงเป็นเสียงยาว (ยู)',
+                words: [
+                    { word: 'CUBE', pronunciation: 'คิวบ์', meaning: 'ลูกบาศก์' },
+                    { word: 'USE', pronunciation: 'ยูส', meaning: 'ใช้' },
+                    { word: 'HUGE', pronunciation: 'ฮิวจ์', meaning: 'ใหญ่มาก' },
+                    { word: 'MUTE', pronunciation: 'มิวท', meaning: 'เงียบ' },
+                    { word: 'FUSE', pronunciation: 'ฟิวซ์', meaning: 'ฟิวส์, หลอมรวม' },
+                    { word: 'CUTE', pronunciation: 'คิวท', meaning: 'น่ารัก' },
+                    { word: 'FLUTE', pronunciation: 'ฟลูท', meaning: 'ขลุ่ย' },
+                    { word: 'RUDE', pronunciation: 'รูด', meaning: 'หยาบคาย' },
+                    { word: 'TUBE', pronunciation: 'ทูบ์', meaning: 'ท่อ' },
+                    { word: 'RULE', pronunciation: 'รูล', meaning: 'กฎ' }
+                ]
+            },
+            'ue': {
+                title: 'คำที่มีสระคู่ (ue)',
+                explanation: 'รูปแบบ ue มักออกเสียงเป็น "ยู" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'BLUE', pronunciation: 'บลู', meaning: 'สีน้ำเงิน' },
+                    { word: 'TRUE', pronunciation: 'ทรู', meaning: 'จริง' },
+                    { word: 'GLUE', pronunciation: 'กลู', meaning: 'กาว' },
+                    { word: 'DUE', pronunciation: 'ดู', meaning: 'ถึงเวลา, ครบกำหนด' },
+                    { word: 'CUE', pronunciation: 'คิว', meaning: 'สัญญาณ, คิว' },
+                    { word: 'VALUE', pronunciation: 'แวลู', meaning: 'ค่า, คุณค่า' },
+                    { word: 'RESCUE', pronunciation: 'เรสคิว', meaning: 'ช่วยเหลือ' },
+                    { word: 'ARGUE', pronunciation: 'อาร์กิว', meaning: 'โต้แย้ง' },
+                    { word: 'CONTINUE', pronunciation: 'คอนทินิว', meaning: 'ดำเนินต่อไป' },
+                    { word: 'VENUE', pronunciation: 'เวนิว', meaning: 'สถานที่' }
+                ]
+            },
+            'oo': {
+                title: 'คำที่มีสระคู่ (oo)',
+                explanation: 'รูปแบบ oo สามารถออกเสียงเป็น "อู" หรือ "อุ" ได้ในภาษาอังกฤษ',
+                words: [
+                    { word: 'MOON', pronunciation: 'มูน', meaning: 'ดวงจันทร์' },
+                    { word: 'FOOD', pronunciation: 'ฟูด', meaning: 'อาหาร' },
+                    { word: 'SCHOOL', pronunciation: 'สคูล', meaning: 'โรงเรียน' },
+                    { word: 'POOL', pronunciation: 'พูล', meaning: 'สระน้ำ' },
+                    { word: 'COOL', pronunciation: 'คูล', meaning: 'เย็น, เท่' },
+                    { word: 'SPOON', pronunciation: 'สปูน', meaning: 'ช้อน' },
+                    { word: 'BOOT', pronunciation: 'บูท', meaning: 'รองเท้าบูท' },
+                    { word: 'ROOM', pronunciation: 'รูม', meaning: 'ห้อง' },
+                    { word: 'TOOL', pronunciation: 'ทูล', meaning: 'เครื่องมือ' },
+                    { word: 'SOON', pronunciation: 'ซูน', meaning: 'เร็วๆ นี้' }
+                ]
+            }
+        };
+
+        let currentPattern = 'a_e';
+        let currentA_E_WordIndex = 0;
+
+        function selectVowelPattern(pattern) {
+            currentPattern = pattern;
+            currentA_E_WordIndex = 0;
+
+            // Hide selection menu and show word display
+            document.getElementById('vowelSelection').classList.add('hidden');
+            document.getElementById('wordDisplaySection').classList.remove('hidden');
+
+            // Update display with selected pattern
+            updateA_E_Display();
+        }
+
+        function backToVowelSelection() {
+            // Hide word display and show selection menu
+            document.getElementById('wordDisplaySection').classList.add('hidden');
+            document.getElementById('vowelSelection').classList.remove('hidden');
+        }
+
+        function updateA_E_Display() {
+            const patternData = vowelPatterns[currentPattern];
+            const wordData = patternData.words[currentA_E_WordIndex];
+
+            document.getElementById('patternTitle').textContent = patternData.title;
+            document.getElementById('patternExplanationTitle').textContent = 'รูปแบบสระคู่ ' + currentPattern;
+            document.getElementById('patternExplanation').textContent = patternData.explanation;
+            document.getElementById('wordDisplay').textContent = wordData.word;
+            document.getElementById('thaiPronunciation').textContent = wordData.pronunciation;
+            document.getElementById('wordMeaning').textContent = wordData.meaning;
+        }
+
+        function nextA_E_Word() {
+            const patternData = vowelPatterns[currentPattern];
+            currentA_E_WordIndex = (currentA_E_WordIndex + 1) % patternData.words.length;
+            updateA_E_Display();
+        }
+
+        function prevA_E_Word() {
+            const patternData = vowelPatterns[currentPattern];
+            currentA_E_WordIndex = (currentA_E_WordIndex - 1 + patternData.words.length) % patternData.words.length;
+            updateA_E_Display();
+        }
+
+        function playA_E_Sound() {
+            const patternData = vowelPatterns[currentPattern];
+            const word = patternData.words[currentA_E_WordIndex].word;
+            playGoogleTTS(word);
+        }
+
+        // Keyboard support for exercise 2
+        document.addEventListener('keydown', (event) => {
+            const key = event.key.toUpperCase();
+            if (consonants.includes(key)) {
+                currentConsonantIndex = consonants.indexOf(key);
+                updateDisplay();
+            } else if (vowels.includes(key)) {
+                currentVowelIndex = vowels.indexOf(key);
+                updateDisplay();
+            }
+        });
+
+        // ข้อมูลพยัญชนะคู่
+        const consonantPairs = {
+            'ch': {
+                title: 'พยัญชนะคู่ (ch)',
+                explanation: 'พยัญชนะคู่ ch มักออกเสียงเป็น "ช" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'CHIN', pronunciation: 'ชิน', meaning: 'คาง' },
+                    { word: 'CHAT', pronunciation: 'แชท', meaning: 'พูดคุย' },
+                    { word: 'CHIP', pronunciation: 'ชิป', meaning: 'ชิป, เศษ' },
+                    { word: 'CHOP', pronunciation: 'ช็อป', meaning: 'สับ' },
+                    { word: 'CHUM', pronunciation: 'ชัม', meaning: 'เพื่อนสนิท' },
+                    { word: 'RICH', pronunciation: 'ริช', meaning: 'รวย' },
+                    { word: 'MUCH', pronunciation: 'มัช', meaning: 'มาก' },
+                    { word: 'SUCH', pronunciation: 'ซัช', meaning: 'ดังกล่าว' },
+                    { word: 'BENCH', pronunciation: 'เบนช์', meaning: 'ม้านั่ง' },
+                    { word: 'LUNCH', pronunciation: 'ลันช์', meaning: 'อาหารกลางวัน' }
+                ]
+            },
+            'sh': {
+                title: 'พยัญชนะคู่ (sh)',
+                explanation: 'พยัญชนะคู่ sh มักออกเสียงเป็น "ช" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'SHE', pronunciation: 'ชี', meaning: 'เธอ (ผู้หญิง)' },
+                    { word: 'SHIP', pronunciation: 'ชิป', meaning: 'เรือ' },
+                    { word: 'SHOP', pronunciation: 'ช็อป', meaning: 'ร้านค้า, ช็อปปิ้ง' },
+                    { word: 'SHUT', pronunciation: 'ชัท', meaning: 'ปิด' },
+                    { word: 'SHED', pronunciation: 'เชด', meaning: 'เพิง, โรงเก็บของ' },
+                    { word: 'FISH', pronunciation: 'ฟิช', meaning: 'ปลา' },
+                    { word: 'WISH', pronunciation: 'วิช', meaning: 'ปรารถนา, ความหวัง' },
+                    { word: 'DISH', pronunciation: 'ดิช', meaning: 'จาน' },
+                    { word: 'CASH', pronunciation: 'แคช', meaning: 'เงินสด' },
+                    { word: 'RUSH', pronunciation: 'รัช', meaning: 'รีบเร่ง' }
+                ]
+            },
+            'th': {
+                title: 'พยัญชนะคู่ (th)',
+                explanation: 'พยัญชนะคู่ th มีสองเสียง คือ เสียง "ธ" (เสียงก้อง) และ "ธ" (เสียงไม่ก้อง)',
+                words: [
+                    { word: 'THIN', pronunciation: 'ธิน', meaning: 'ผอม, บาง' },
+                    { word: 'THIS', pronunciation: 'ดิส', meaning: 'นี้' },
+                    { word: 'THAT', pronunciation: 'แดท', meaning: 'นั้น' },
+                    { word: 'THEM', pronunciation: 'เดม', meaning: 'พวกเขา' },
+                    { word: 'THEN', pronunciation: 'เดน', meaning: 'แล้ว, หลังจากนั้น' },
+                    { word: 'PATH', pronunciation: 'พาธ', meaning: 'ทางเดิน' },
+                    { word: 'MATH', pronunciation: 'แมธ', meaning: 'คณิตศาสตร์' },
+                    { word: 'BATH', pronunciation: 'บาธ', meaning: 'อ่างอาบน้ำ' },
+                    { word: 'WITH', pronunciation: 'วิธ', meaning: 'กับ' },
+                    { word: 'BOTH', pronunciation: 'โบท', meaning: 'ทั้งคู่' }
+                ]
+            },
+            'ph': {
+                title: 'พยัญชนะคู่ (ph)',
+                explanation: 'พยัญชนะคู่ ph มักออกเสียงเป็น "ฟ" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'PHONE', pronunciation: 'โฟน', meaning: 'โทรศัพท์' },
+                    { word: 'PHOTO', pronunciation: 'โฟโต', meaning: 'รูปถ่าย' },
+                    { word: 'GRAPH', pronunciation: 'กราฟ', meaning: 'กราฟ, แผนภูมิ' },
+                    { word: 'MORPH', pronunciation: 'มอร์ฟ', meaning: 'เปลี่ยนรูป' },
+                    { word: 'PHI', pronunciation: 'ไฟ', meaning: 'อักษรกรีก Φ' },
+                    { word: 'ALPHA', pronunciation: 'อัลฟา', meaning: 'อักษรกรีก Α' },
+                    { word: 'TROPHY', pronunciation: 'โทรฟี', meaning: 'ถ้วยรางวัล' },
+                    { word: 'ORPHAN', pronunciation: 'ออร์เฟน', meaning: 'เด็กกำพร้า' },
+                    { word: 'DOLPHIN', pronunciation: 'ดอลฟิน', meaning: 'ปลาโลมา' }
+                ]
+            },
+            'gh': {
+                title: 'พยัญชนะคู่ (gh)',
+                explanation: 'พยัญชนะคู่ gh มีหลายการออกเสียง บางครั้งออกเสียงเป็น "ฟ" หรือไม่ออกเสียงเลย',
+                words: [
+                    { word: 'HIGH', pronunciation: 'ไฮ', meaning: 'สูง' },
+                    { word: 'SIGH', pronunciation: 'ไซ', meaning: 'ถอนหายใจ' },
+                    { word: 'ENOUGH', pronunciation: 'อินัฟ', meaning: 'พอ' },
+                    { word: 'LIGHT', pronunciation: 'ไลท์', meaning: 'แสง, เบา' },
+                    { word: 'RIGHT', pronunciation: 'ไรท์', meaning: 'ขวา, ถูกต้อง' },
+                    { word: 'MIGHT', pronunciation: 'ไมท์', meaning: 'อาจจะ' },
+                    { word: 'TIGHT', pronunciation: 'ไทท์', meaning: 'แน่น' },
+                    { word: 'WEIGH', pronunciation: 'เว', meaning: 'ชั่งน้ำหนัก' },
+                    { word: 'THOUGH', pronunciation: 'โธ', meaning: 'แม้ว่า' },
+                    { word: 'THROUGH', pronunciation: 'ทรู', meaning: 'ผ่าน' }
+                ]
+            },
+            'wh': {
+                title: 'พยัญชนะคู่ (wh)',
+                explanation: 'พยัญชนะคู่ wh มักออกเสียงเป็น "ว" หรือ "ฮ" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'WHAT', pronunciation: 'ว็อท', meaning: 'อะไร' },
+                    { word: 'WHEN', pronunciation: 'เวน', meaning: 'เมื่อไร' },
+                    { word: 'WHY', pronunciation: 'วาย', meaning: 'ทำไม' },
+                    { word: 'WHEAT', pronunciation: 'วีท', meaning: 'ข้าว' },
+                    { word: 'WHOM', pronunciation: 'ฮูม', meaning: 'ใคร (กรรม)' },
+                    { word: 'WHIP', pronunciation: 'วิพ', meaning: 'แส้' },
+                    { word: 'WHIZ', pronunciation: 'วิซ', meaning: 'ผู้มีความสามารถพิเศษ' },
+                    { word: 'WHEEL', pronunciation: 'วีล', meaning: 'พวงมาลัย, ล้อ' },
+                    { word: 'WHITE', pronunciation: 'ไวท์', meaning: 'สีขาว' },
+                    { word: 'WHICH', pronunciation: 'วิช', meaning: 'อันไหน, ซึ่ง' }
+                ]
+            },
+            'ck': {
+                title: 'พยัญชนะคู่ (ck)',
+                explanation: 'พยัญชนะคู่ ck มักออกเสียงเป็น "ค" ในภาษาอังกฤษ และมักอยู่ท้ายคำ',
+                words: [
+                    { word: 'BACK', pronunciation: 'แบ็ค', meaning: 'หลัง, กลับ' },
+                    { word: 'NECK', pronunciation: 'เน็ค', meaning: 'คอ' },
+                    { word: 'ROCK', pronunciation: 'ร็อค', meaning: 'หิน, แร็ค' },
+                    { word: 'LOCK', pronunciation: 'ล็อค', meaning: 'ล็อค, กุญแจ' },
+                    { word: 'PICK', pronunciation: 'พิค', meaning: 'เลือก, ขุด' },
+                    { word: 'DUCK', pronunciation: 'ดัค', meaning: 'เป็ด' },
+                    { word: 'PACK', pronunciation: 'แพ็ค', meaning: 'ห่อ, บรรจุ' },
+                    { word: 'SACK', pronunciation: 'แซ็ค', meaning: 'กระสอบ' },
+                    { word: 'KICK', pronunciation: 'คิก', meaning: 'เตะ' },
+                    { word: 'LICK', pronunciation: 'ลิค', meaning: 'เลีย' }
+                ]
+            },
+            'ng': {
+                title: 'พยัญชนะคู่ (ng)',
+                explanation: 'พยัญชนะคู่ ng มักออกเสียงเป็น "ง" ในภาษาอังกฤษ และมักอยู่ท้ายคำ',
+                words: [
+                    { word: 'SING', pronunciation: 'ซิง', meaning: 'ร้องเพลง' },
+                    { word: 'RING', pronunciation: 'ริง', meaning: 'แหวน, สิ่ง' },
+                    { word: 'KING', pronunciation: 'คิง', meaning: 'กษัตริย์' },
+                    { word: 'WING', pronunciation: 'วิง', meaning: 'ปีก' },
+                    { word: 'LONG', pronunciation: 'ลอง', meaning: 'ยาว, นาน' },
+                    { word: 'SONG', pronunciation: 'ซอง', meaning: 'เพลง' },
+                    { word: 'BANG', pronunciation: 'แบง', meaning: 'เสียงดัง' },
+                    { word: 'HANG', pronunciation: 'แฮง', meaning: 'แขวน' },
+                    { word: 'RUNG', pronunciation: 'รัง', meaning: 'ขั้นบันได' },
+                    { word: 'LUNG', pronunciation: 'ลัง', meaning: 'ปอด' }
+                ]
+            },
+            'qu': {
+                title: 'พยัญชนะคู่ (qu)',
+                explanation: 'พยัญชนะคู่ qu มักออกเสียงเป็น "คว" ในภาษาอังกฤษ',
+                words: [
+                    { word: 'QUIZ', pronunciation: 'ควิซ', meaning: 'แบบทดสอบ' },
+                    { word: 'QUIT', pronunciation: 'ควิท', meaning: 'เลิก, ออก' },
+                    { word: 'QUID', pronunciation: 'ควิด', meaning: 'ปอนด์สเตอร์ลิง (คำสแลง)' },
+                    { word: 'QUAD', pronunciation: 'ควอด', meaning: 'ลานสี่เหลี่ยม' },
+                    { word: 'QUIP', pronunciation: 'ควิพ', meaning: 'พูดตลก' },
+                    { word: 'QUEEN', pronunciation: 'ควีน', meaning: 'ราชินี' },
+                    { word: 'QUEST', pronunciation: 'เควสต์', meaning: 'การค้นหา' },
+                    { word: 'QUICK', pronunciation: 'ควิก', meaning: 'เร็ว' },
+                    { word: 'QUITE', pronunciation: 'ไควต์', meaning: 'ค่อนข้าง' }
+                ]
+            }
+        };
+
+        let currentConsonantPair = 'ch';
+        let currentConsonantWordIndex = 0;
+
+        function selectConsonantPair(pair) {
+            currentConsonantPair = pair;
+            currentConsonantWordIndex = 0;
+            document.getElementById('consonantSelection').classList.add('hidden');
+            document.getElementById('consonantWordDisplaySection').classList.remove('hidden');
+            updateConsonantDisplay();
+        }
+
+        function backToConsonantSelection() {
+            document.getElementById('consonantWordDisplaySection').classList.add('hidden');
+            document.getElementById('consonantSelection').classList.remove('hidden');
+        }
+
+        function updateConsonantDisplay() {
+            const pairData = consonantPairs[currentConsonantPair];
+            const wordData = pairData.words[currentConsonantWordIndex];
+            document.getElementById('consonantPairTitle').textContent = pairData.title;
+            document.getElementById('consonantPatternExplanationTitle').textContent = 'พยัญชนะคู่ ' + currentConsonantPair;
+            document.getElementById('consonantPatternExplanation').textContent = pairData.explanation;
+            document.getElementById('consonantWordDisplay').textContent = wordData.word;
+            document.getElementById('consonantThaiPronunciation').textContent = wordData.pronunciation;
+            document.getElementById('consonantWordMeaning').textContent = wordData.meaning;
+        }
+
+        function nextConsonantWord() {
+            const pairData = consonantPairs[currentConsonantPair];
+            currentConsonantWordIndex = (currentConsonantWordIndex + 1) % pairData.words.length;
+            updateConsonantDisplay();
+        }
+
+        function prevConsonantWord() {
+            const pairData = consonantPairs[currentConsonantPair];
+            currentConsonantWordIndex = (currentConsonantWordIndex - 1 + pairData.words.length) % pairData.words.length;
+            updateConsonantDisplay();
+        }
+
+        function playConsonantSound() {
+            const pairData = consonantPairs[currentConsonantPair];
+            const word = pairData.words[currentConsonantWordIndex].word;
+            playGoogleTTS(word);
+        }
+
+        function startExercise6() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.add('hidden');
+            document.getElementById('exercise6').classList.remove('hidden');
+            document.getElementById('suffixSelection').classList.remove('hidden');
+            document.getElementById('suffixWordDisplaySection').classList.add('hidden');
+        }
+
+        // ข้อมูลสำหรับการเติมคำ
+        const suffixData = {
+            'ing': {
+                title: 'การเติม -ing',
+                rule: 'เติม -ing ท้ายคำกริยาเพื่อแสดงการกระทำที่กำลังเกิดขึ้น',
+                words: [
+                    {
+                        original: 'WALK',
+                        originalPronunciation: 'วอล์ค',
+                        suffix: 'WALKING',
+                        suffixPronunciation: 'วอล์ค-คิง',
+                        meaning: 'เดิน',
+                        example: 'I am walking to school.',
+                        exampleTranslation: 'ฉันกำลังเดินไปโรงเรียน'
+                    },
+                    {
+                        original: 'READ',
+                        originalPronunciation: 'รีด',
+                        suffix: 'READING',
+                        suffixPronunciation: 'รีด-ดิง',
+                        meaning: 'อ่าน',
+                        example: 'She is reading a book.',
+                        exampleTranslation: 'เธอกำลังอ่านหนังสือ'
+                    },
+                    {
+                        original: 'EAT',
+                        originalPronunciation: 'อีท',
+                        suffix: 'EATING',
+                        suffixPronunciation: 'อีท-ทิง',
+                        meaning: 'กิน',
+                        example: 'They are eating dinner.',
+                        exampleTranslation: 'พวกเขากำลังกินอาหารเย็น'
+                    },
+                    {
+                        original: 'SING',
+                        originalPronunciation: 'ซิง',
+                        suffix: 'SINGING',
+                        suffixPronunciation: 'ซิง-กิง',
+                        meaning: 'ร้องเพลง',
+                        example: 'He is singing a song.',
+                        exampleTranslation: 'เขากำลังร้องเพลง'
+                    },
+                    {
+                        original: 'PLAY',
+                        originalPronunciation: 'เพล',
+                        suffix: 'PLAYING',
+                        suffixPronunciation: 'เพล-อิง',
+                        meaning: 'เล่น',
+                        example: 'The children are playing outside.',
+                        exampleTranslation: 'เด็กๆ กำลังเล่นอยู่ข้างนอก'
+                    },
+                    {
+                        original: 'RUN',
+                        originalPronunciation: 'รัน',
+                        suffix: 'RUNNING',
+                        suffixPronunciation: 'รัน-นิง',
+                        meaning: 'วิ่ง',
+                        example: 'I am running in the park.',
+                        exampleTranslation: 'ฉันกำลังวิ่งในสวนสาธารณะ'
+                    },
+                    {
+                        original: 'SWIM',
+                        originalPronunciation: 'สวิม',
+                        suffix: 'SWIMMING',
+                        suffixPronunciation: 'สวิม-มิง',
+                        meaning: 'ว่ายน้ำ',
+                        example: 'We are swimming in the pool.',
+                        exampleTranslation: 'เรากำลังว่ายน้ำในสระ'
+                    },
+                    {
+                        original: 'WRITE',
+                        originalPronunciation: 'ไรท์',
+                        suffix: 'WRITING',
+                        suffixPronunciation: 'ไรท์-ทิง',
+                        meaning: 'เขียน',
+                        example: 'She is writing a letter.',
+                        exampleTranslation: 'เธอกำลังเขียนจดหมาย'
+                    },
+                    {
+                        original: 'DANCE',
+                        originalPronunciation: 'แดนซ์',
+                        suffix: 'DANCING',
+                        suffixPronunciation: 'แดน-ซิง',
+                        meaning: 'เต้น',
+                        example: 'They are dancing at the party.',
+                        exampleTranslation: 'พวกเขากำลังเต้นในงานปาร์ตี้'
+                    },
+                    {
+                        original: 'WORK',
+                        originalPronunciation: 'เวิร์ค',
+                        suffix: 'WORKING',
+                        suffixPronunciation: 'เวิร์ค-คิง',
+                        meaning: 'ทำงาน',
+                        example: 'He is working hard.',
+                        exampleTranslation: 'เขากำลังทำงานหนัก'
+                    }
+                ]
+            },
+            's_es': {
+                title: 'การเติม -s/-es',
+                rule: 'เติม -s หรือ -es ท้ายคำนามเพื่อแสดงพหูพจน์ หรือเติมท้ายคำกริยาเพื่อใช้กับประธานเอกพจน์',
+                words: [
+                    {
+                        original: 'BOOK',
+                        originalPronunciation: 'บุค',
+                        suffix: 'BOOKS',
+                        suffixPronunciation: 'บุคส์',
+                        meaning: 'หนังสือ',
+                        example: 'I have three books.',
+                        exampleTranslation: 'ฉันมีหนังสือสามเล่ม'
+                    },
+                    {
+                        original: 'WISH',
+                        originalPronunciation: 'วิช',
+                        suffix: 'WISHES',
+                        suffixPronunciation: 'วิช-เอส',
+                        meaning: 'ความปรารถนา',
+                        example: 'She makes many wishes.',
+                        exampleTranslation: 'เธอตั้งความปรารถนามากมาย'
+                    },
+                    {
+                        original: 'BOX',
+                        originalPronunciation: 'บ็อกซ์',
+                        suffix: 'BOXES',
+                        suffixPronunciation: 'บ็อก-เซส',
+                        meaning: 'กล่อง',
+                        example: 'There are five boxes on the table.',
+                        exampleTranslation: 'มีกล่องห้ากล่องอยู่บนโต๊ะ'
+                    },
+                    {
+                        original: 'BUSH',
+                        originalPronunciation: 'บุช',
+                        suffix: 'BUSHES',
+                        suffixPronunciation: 'บุช-เอส',
+                        meaning: 'พุ่มไม้',
+                        example: 'The garden has many bushes.',
+                        exampleTranslation: 'สวนมีพุ่มไม้มากมาย'
+                    },
+                    {
+                        original: 'TOMATO',
+                        originalPronunciation: 'โท-เม-โท',
+                        suffix: 'TOMATOES',
+                        suffixPronunciation: 'โท-เม-โทส',
+                        meaning: 'มะเขือเทศ',
+                        example: 'I need two tomatoes for the salad.',
+                        exampleTranslation: 'ฉันต้องการมะเขือเทศสองลูกสำหรับสลัด'
+                    },
+                    {
+                        original: 'RUN',
+                        originalPronunciation: 'รัน',
+                        suffix: 'RUNS',
+                        suffixPronunciation: 'รันส์',
+                        meaning: 'วิ่ง',
+                        example: 'He runs every morning.',
+                        exampleTranslation: 'เขาวิ่งทุกเช้า'
+                    },
+                    {
+                        original: 'WATCH',
+                        originalPronunciation: 'ว็อทช์',
+                        suffix: 'WATCHES',
+                        suffixPronunciation: 'ว็อท-เชส',
+                        meaning: 'นาฬิกาข้อมือ, ดู',
+                        example: 'She watches TV every night.',
+                        exampleTranslation: 'เธอดูทีวีทุกคืน'
+                    },
+                    {
+                        original: 'CRY',
+                        originalPronunciation: 'คราย',
+                        suffix: 'CRIES',
+                        suffixPronunciation: 'ครายส์',
+                        meaning: 'ร้องไห้',
+                        example: 'The baby cries when he is hungry.',
+                        exampleTranslation: 'ทารกร้องไห้เมื่อเขาหิว'
+                    },
+                    {
+                        original: 'GO',
+                        originalPronunciation: 'โก',
+                        suffix: 'GOES',
+                        suffixPronunciation: 'โกส',
+                        meaning: 'ไป',
+                        example: 'She goes to school by bus.',
+                        exampleTranslation: 'เธอไปโรงเรียนโดยรถบัส'
+                    },
+                    {
+                        original: 'STUDY',
+                        originalPronunciation: 'สตัด-ดี',
+                        suffix: 'STUDIES',
+                        suffixPronunciation: 'สตัด-ดิส',
+                        meaning: 'เรียน',
+                        example: 'He studies English every day.',
+                        exampleTranslation: 'เขาเรียนภาษาอังกฤษทุกวัน'
+                    }
+                ]
+            },
+            'ed': {
+                title: 'การเติม -ed',
+                rule: 'เติม -ed ท้ายคำกริยาช่อง 1 เพื่อเปลี่ยนเป็นช่อง 2 และช่อง 3 แสดงเหตุการณ์ในอดีต',
+                words: [
+                    {
+                        original: 'WALK',
+                        originalPronunciation: 'วอล์ค',
+                        suffix: 'WALKED',
+                        suffixPronunciation: 'วอล์คท์',
+                        meaning: 'เดิน',
+                        example: 'I walked to school yesterday.',
+                        exampleTranslation: 'ฉันเดินไปโรงเรียนเมื่อวาน'
+                    },
+                    {
+                        original: 'PLAY',
+                        originalPronunciation: 'เพล',
+                        suffix: 'PLAYED',
+                        suffixPronunciation: 'เพลด',
+                        meaning: 'เล่น',
+                        example: 'They played soccer last weekend.',
+                        exampleTranslation: 'พวกเขาเล่นฟุตบอลเมื่อสุดสัปดาห์ที่แล้ว'
+                    },
+                    {
+                        original: 'WATCH',
+                        originalPronunciation: 'ว็อทช์',
+                        suffix: 'WATCHED',
+                        suffixPronunciation: 'ว็อทช์ท์',
+                        meaning: 'ดู',
+                        example: 'We watched a movie last night.',
+                        exampleTranslation: 'เราดูหนังเมื่อคืนที่แล้ว'
+                    },
+                    {
+                        original: 'COOK',
+                        originalPronunciation: 'คุก',
+                        suffix: 'COOKED',
+                        suffixPronunciation: 'คุกท์',
+                        meaning: 'ทำอาหาร',
+                        example: 'She cooked dinner for her family.',
+                        exampleTranslation: 'เธอทำอาหารเย็นให้ครอบครัว'
+                    },
+                    {
+                        original: 'CLEAN',
+                        originalPronunciation: 'คลีน',
+                        suffix: 'CLEANED',
+                        suffixPronunciation: 'คลีนด์',
+                        meaning: 'ทำความสะอาด',
+                        example: 'I cleaned my room this morning.',
+                        exampleTranslation: 'ฉันทำความสะอาดห้องของฉันเมื่อเช้านี้'
+                    },
+                    {
+                        original: 'TALK',
+                        originalPronunciation: 'ทอล์ค',
+                        suffix: 'TALKED',
+                        suffixPronunciation: 'ทอล์คท์',
+                        meaning: 'พูด',
+                        example: 'He talked to his teacher after class.',
+                        exampleTranslation: 'เขาพูดกับครูของเขาหลังเลิกเรียน'
+                    },
+                    {
+                        original: 'WORK',
+                        originalPronunciation: 'เวิร์ค',
+                        suffix: 'WORKED',
+                        suffixPronunciation: 'เวิร์คท์',
+                        meaning: 'ทำงาน',
+                        example: 'She worked late yesterday.',
+                        exampleTranslation: 'เธอทำงานดึกเมื่อวาน'
+                    },
+                    {
+                        original: 'HELP',
+                        originalPronunciation: 'เฮลพ์',
+                        suffix: 'HELPED',
+                        suffixPronunciation: 'เฮลพ์ท์',
+                        meaning: 'ช่วย',
+                        example: 'They helped their neighbors move.',
+                        exampleTranslation: 'พวกเขาช่วยเพื่อนบ้านย้ายบ้าน'
+                    },
+                    {
+                        original: 'STOP',
+                        originalPronunciation: 'สต็อพ',
+                        suffix: 'STOPPED',
+                        suffixPronunciation: 'สต็อพท์',
+                        meaning: 'หยุด',
+                        example: 'The car stopped at the red light.',
+                        exampleTranslation: 'รถหยุดที่ไฟแดง'
+                    },
+                    {
+                        original: 'WANT',
+                        originalPronunciation: 'ว็อนท์',
+                        suffix: 'WANTED',
+                        suffixPronunciation: 'ว็อน-ทิด',
+                        meaning: 'ต้องการ',
+                        example: 'I wanted to buy that book.',
+                        exampleTranslation: 'ฉันต้องการซื้อหนังสือเล่มนั้น'
+                    }
+                ]
+            }
+        };
+
+        let currentSuffixType = 'ing';
+        let currentSuffixWordIndex = 0;
+
+        function selectSuffixType(type) {
+            currentSuffixType = type;
+            currentSuffixWordIndex = 0;
+
+            document.getElementById('suffixSelection').classList.add('hidden');
+            document.getElementById('suffixWordDisplaySection').classList.remove('hidden');
+
+            updateSuffixDisplay();
+        }
+
+        function backToSuffixSelection() {
+            document.getElementById('suffixWordDisplaySection').classList.add('hidden');
+            document.getElementById('suffixSelection').classList.remove('hidden');
+        }
+
+        function updateSuffixDisplay() {
+            const suffixTypeData = suffixData[currentSuffixType];
+            const wordData = suffixTypeData.words[currentSuffixWordIndex];
+
+            document.getElementById('suffixTitle').textContent = suffixTypeData.title;
+            document.getElementById('originalWord').textContent = wordData.original;
+            document.getElementById('originalPronunciation').textContent = wordData.originalPronunciation;
+            document.getElementById('suffixWord').textContent = wordData.suffix;
+            document.getElementById('suffixPronunciation').textContent = wordData.suffixPronunciation;
+            document.getElementById('suffixMeaning').textContent = wordData.meaning;
+            document.getElementById('suffixRule').textContent = suffixTypeData.rule;
+            document.getElementById('exampleSentence').textContent = wordData.example;
+            document.getElementById('exampleTranslation').textContent = wordData.exampleTranslation;
+        }
+
+        function nextSuffixWord() {
+            const suffixTypeData = suffixData[currentSuffixType];
+            currentSuffixWordIndex = (currentSuffixWordIndex + 1) % suffixTypeData.words.length;
+            updateSuffixDisplay();
+        }
+
+        function prevSuffixWord() {
+            const suffixTypeData = suffixData[currentSuffixType];
+            currentSuffixWordIndex = (currentSuffixWordIndex - 1 + suffixTypeData.words.length) % suffixTypeData.words.length;
+            updateSuffixDisplay();
+        }
+
+        function playOriginalSound() {
+            const suffixTypeData = suffixData[currentSuffixType];
+            const word = suffixTypeData.words[currentSuffixWordIndex].original;
+            playGoogleTTS(word.toLowerCase());
+        }
+
+        function playSuffixSound() {
+            const suffixTypeData = suffixData[currentSuffixType];
+            const word = suffixTypeData.words[currentSuffixWordIndex].suffix;
+            playGoogleTTS(word.toLowerCase());
+        }
+
+        // อัพเดตฟังก์ชัน goToMenu เพื่อรวม exercise6
+        function goToMenu() {
+            document.getElementById('mainMenu').classList.remove('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.add('hidden');
+            document.getElementById('exercise6').classList.add('hidden');
+        }
+
+        // ข้อมูลคำศัพท์แบ่งตามหมวดหมู่
+        const categoryWords = {
+            'food': {
+                title: 'หมวดหมู่: อาหาร',
+                words: [
+                    { word: 'FRIED RICE', pronunciation: 'ฟรายด์ ไรซ์', meaning: 'ข้าวผัด' },
+                    { word: 'FRIED CHICKEN', pronunciation: 'ฟรายด์ ชิคเค่น', meaning: 'ไก่ทอด' },
+                    { word: 'PAD THAI', pronunciation: 'ผัดไทย', meaning: 'ผัดไทย' },
+                    { word: 'TOM YUM', pronunciation: 'ต้มยำ', meaning: 'ต้มยำ' },
+                    { word: 'GREEN CURRY', pronunciation: 'กรีน เคอร์รี่', meaning: 'แกงเขียวหวาน' },
+                    { word: 'SPICY SALAD', pronunciation: 'สไปซี่ สลัด', meaning: 'ส้มตำ' },
+                    { word: 'EGG FRIED RICE', pronunciation: 'เอ็ก ไฟรด ไรซ์', meaning: 'ข้าวผัดไข่' },
+                    { word: 'STIR-FRY VEGETABLE', pronunciation: 'สเทอะร์ ไฟรด เวจทเทเบิล', meaning: 'ผัดผัก' },
+                    { word: 'NOODLE SOUP', pronunciation: 'นูเดิ้ล ซุป', meaning: 'ก๋วยเตี๋ยว' },
+                    { word: 'THAI BASIL CHICKEN', pronunciation: 'ไทย เบซิล ชิคเคน', meaning: 'ไก่ผัดกะเพรา' }
+                ]
+            },
+            'clothing': {
+                title: 'หมวดหมู่: เสื้อผ้า',
+                words: [
+                    { word: 'SHIRT', pronunciation: 'เชิร์ท', meaning: 'เสื้อเชิ้ต' },
+                    { word: 'PANTS', pronunciation: 'แพนทส์', meaning: 'กางเกง' },
+                    { word: 'DRESS', pronunciation: 'เดรส', meaning: 'ชุดกระโปรง' },
+                    { word: 'SKIRT', pronunciation: 'สเกิร์ท', meaning: 'กระโปรง' },
+                    { word: 'SHOES', pronunciation: 'ชูส์', meaning: 'รองเท้า' },
+                    { word: 'HAT', pronunciation: 'แฮท', meaning: 'หมวก' },
+                    { word: 'SOCKS', pronunciation: 'ซ็อคส์', meaning: 'ถุงเท้า' },
+                    { word: 'JACKET', pronunciation: 'แจ็ค-เคท', meaning: 'แจ็คเก็ต' },
+                    { word: 'GLOVES', pronunciation: 'กลัฟส์', meaning: 'ถุงมือ' },
+                    { word: 'SCARF', pronunciation: 'สคาร์ฟ', meaning: 'ผ้าพันคอ' }
+                ]
+            },
+            'family': {
+                title: 'หมวดหมู่: ครอบครัว',
+                words: [
+                    { word: 'FATHER', pronunciation: 'ฟา-เธอร์', meaning: 'พ่อ' },
+                    { word: 'MOTHER', pronunciation: 'มา-เธอร์', meaning: 'แม่' },
+                    { word: 'BROTHER', pronunciation: 'บรา-เธอร์', meaning: 'พี่ชาย/น้องชาย' },
+                    { word: 'SISTER', pronunciation: 'ซิส-เทอร์', meaning: 'พี่สาว/น้องสาว' },
+                    { word: 'GRANDFATHER', pronunciation: 'แกรนด์-ฟา-เธอร์', meaning: 'ปู่/ตา' },
+                    { word: 'GRANDMOTHER', pronunciation: 'แกรนด์-มา-เธอร์', meaning: 'ย่า/ยาย' },
+                    { word: 'UNCLE', pronunciation: 'อัง-เคิล', meaning: 'ลุง/อา' },
+                    { word: 'AUNT', pronunciation: 'อานท์', meaning: 'ป้า/น้า' },
+                    { word: 'COUSIN', pronunciation: 'คัส-ซิน', meaning: 'ลูกพี่ลูกน้อง' },
+                    { word: 'BABY', pronunciation: 'เบ-บี้', meaning: 'ทารก' }
+                ]
+            },
+            'school': {
+                title: 'หมวดหมู่: โรงเรียน',
+                words: [
+                    { word: 'CLASSROOM', pronunciation: 'คลาสรูม', meaning: 'ห้องเรียน' },
+                    { word: 'CAFETERIA', pronunciation: 'แคฟฟิเทียเรีย', meaning: 'โรงอาหาร' },
+                    { word: 'SCIENCE LAB', pronunciation: 'ไซเอนซ์ แล็บ', meaning: 'ห้องวิทยาศาสตร์' },
+                    { word: 'COMPUTER ROOM', pronunciation: 'คอมพิวเตอร์ รูม', meaning: 'ห้องคอมพิวเตอร์' },
+                    { word: 'LIBRARY', pronunciation: 'ไลบรารี่', meaning: 'ห้องสมุด' },
+                    { word: 'BASKETBALL COURT', pronunciation: 'บาสเกตบอล คอร์ท', meaning: 'สนามบาสเกตบอล' },
+                    { word: 'PLAYGROUND', pronunciation: 'เพลย์กราวนด์', meaning: 'สนามเด็กเล่น' },
+                    { word: 'AUDITORIUM', pronunciation: 'ออดิทอเรียม', meaning: 'หอประชุม' },
+                    { word: 'MUSIC ROOM', pronunciation: 'มิวสิค รูม', meaning: 'ห้องดนตรี' },
+                    { word: 'ART ROOM', pronunciation: 'อาร์ท รูม', meaning: 'ห้องศิลปะ' },
+                    { word: 'PRAYER ROOM', pronunciation: 'เพรย์ รูม', meaning: 'ห้องละหมาด' },
+                    { word: 'TOILET', pronunciation: 'ทอยเล็ท', meaning: 'ห้องส้วม' }
+                ]
+            },
+            'transportation': {
+                title: 'หมวดหมู่: ยานพาหนะ',
+                words: [
+                    { word: 'CAR', pronunciation: 'คาร์', meaning: 'รถยนต์' },
+                    { word: 'BUS', pronunciation: 'บัส', meaning: 'รถบัส' },
+                    { word: 'TRAIN', pronunciation: 'เทรน', meaning: 'รถไฟ' },
+                    { word: 'BICYCLE', pronunciation: 'ไบ-ซิ-เคิล', meaning: 'จักรยาน' },
+                    { word: 'MOTORCYCLE', pronunciation: 'โม-เตอร์-ไซ-เคิล', meaning: 'รถมอเตอร์ไซค์' },
+                    { word: 'BOAT', pronunciation: 'โบท', meaning: 'เรือ' },
+                    { word: 'SHIP', pronunciation: 'ชิพ', meaning: 'เรือใหญ่' },
+                    { word: 'AIRPLANE', pronunciation: 'แอร์-เพลน', meaning: 'เครื่องบิน' },
+                    { word: 'HELICOPTER', pronunciation: 'เฮล-ลิ-คอป-เตอร์', meaning: 'เฮลิคอปเตอร์' },
+                    { word: 'TAXI', pronunciation: 'แท็ก-ซี่', meaning: 'แท็กซี่' }
+                ]
+            },
+            'animals': {
+                title: 'หมวดหมู่: สัตว์',
+                words: [
+                    { word: 'DOG', pronunciation: 'ด็อก', meaning: 'สุนัข' },
+                    { word: 'CAT', pronunciation: 'แคท', meaning: 'แมว' },
+                    { word: 'ELEPHANT', pronunciation: 'เอล-ละ-แฟนท์', meaning: 'ช้าง' },
+                    { word: 'TIGER', pronunciation: 'ไท-เกอร์', meaning: 'เสือ' },
+                    { word: 'LION', pronunciation: 'ไล-อ้อน', meaning: 'สิงโต' },
+                    { word: 'BIRD', pronunciation: 'เบิร์ด', meaning: 'นก' },
+                    { word: 'FISH', pronunciation: 'ฟิช', meaning: 'ปลา' },
+                    { word: 'RABBIT', pronunciation: 'แรบ-บิท', meaning: 'กระต่าย' },
+                    { word: 'MONKEY', pronunciation: 'มัง-คีย์', meaning: 'ลิง' },
+                    { word: 'HORSE', pronunciation: 'ฮอร์ส', meaning: 'ม้า' }
+                ]
+            },
+            'stationery': {
+                title: 'หมวดหมู่: อุปกรณ์การเรียน',
+                words: [
+                    { word: 'PEN', pronunciation: 'เพน', meaning: 'ปากกา' },
+                    { word: 'PENCIL', pronunciation: 'เพน-ซิล', meaning: 'ดินสอ' },
+                    { word: 'ERASER', pronunciation: 'อิ-เร-เซอร์', meaning: 'ยางลบ' },
+                    { word: 'RULER', pronunciation: 'รู-เลอร์', meaning: 'ไม้บรรทัด' },
+                    { word: 'NOTEBOOK', pronunciation: 'โน้ต-บุค', meaning: 'สมุดโน๊ต' },
+                    { word: 'BOOK', pronunciation: 'บุค', meaning: 'หนังสือ' },
+                    { word: 'BAG', pronunciation: 'แบ็ก', meaning: 'กระเป๋า' },
+                    { word: 'SCISSORS', pronunciation: 'ซิส-เซอร์ส', meaning: 'กรรไกร' },
+                    { word: 'GLUE', pronunciation: 'กลู', meaning: 'กาว' },
+                    { word: 'CALCULATOR', pronunciation: 'แคล-คิว-เล-เตอร์', meaning: 'เครื่องคิดเลข' }
+                ]
+            },
+            'hobbies': {
+                title: 'หมวดหมู่: งานอดิเรก',
+                words: [
+                    { word: 'READING', pronunciation: 'รีด-ดิง', meaning: 'การอ่าน' },
+                    { word: 'WRITING', pronunciation: 'ไรท์-ทิง', meaning: 'การเขียน' },
+                    { word: 'DRAWING', pronunciation: 'ดรอ-อิง', meaning: 'การวาดรูป' },
+                    { word: 'SINGING', pronunciation: 'ซิง-อิง', meaning: 'การร้องเพลง' },
+                    { word: 'DANCING', pronunciation: 'แดน-ซิง', meaning: 'การเต้นรำ' },
+                    { word: 'SWIMMING', pronunciation: 'สวิม-มิง', meaning: 'การว่ายน้ำ' },
+                    { word: 'COOKING', pronunciation: 'คุก-คิง', meaning: 'การทำอาหาร' },
+                    { word: 'GARDENING', pronunciation: 'การ-เดน-นิง', meaning: 'การทำสวน' },
+                    { word: 'PHOTOGRAPHY', pronunciation: 'โฟ-โต-กรา-ฟี', meaning: 'การถ่ายภาพ' },
+                    { word: 'SHOPPING', pronunciation: 'ช็อป-ปิง', meaning: 'การช้อปปิ้ง' }
+                ]
+            }
+        };
+
+        let currentCategory = 'food';
+        let currentCategoryWordIndex = 0;
+
+        function startExercise7() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.add('hidden');
+            document.getElementById('exercise6').classList.add('hidden');
+            document.getElementById('exercise7').classList.remove('hidden');
+            document.getElementById('categorySelection').classList.remove('hidden');
+            document.getElementById('categoryWordDisplaySection').classList.add('hidden');
+        }
+
+        function selectCategory(category) {
+            currentCategory = category;
+            currentCategoryWordIndex = 0;
+
+            document.getElementById('categorySelection').classList.add('hidden');
+            document.getElementById('categoryWordDisplaySection').classList.remove('hidden');
+
+            updateCategoryDisplay();
+        }
+
+        function backToCategorySelection() {
+            document.getElementById('categoryWordDisplaySection').classList.add('hidden');
+            document.getElementById('categorySelection').classList.remove('hidden');
+        }
+
+        function updateCategoryDisplay() {
+            const categoryData = categoryWords[currentCategory];
+            const wordData = categoryData.words[currentCategoryWordIndex];
+
+            document.getElementById('categoryTitle').textContent = categoryData.title;
+            document.getElementById('categoryWordDisplay').textContent = wordData.word;
+            document.getElementById('categoryThaiPronunciation').textContent = wordData.pronunciation;
+            document.getElementById('categoryWordMeaning').textContent = wordData.meaning;
+        }
+
+        function nextCategoryWord() {
+            const categoryData = categoryWords[currentCategory];
+            currentCategoryWordIndex = (currentCategoryWordIndex + 1) % categoryData.words.length;
+            updateCategoryDisplay();
+        }
+
+        function prevCategoryWord() {
+            const categoryData = categoryWords[currentCategory];
+            currentCategoryWordIndex = (currentCategoryWordIndex - 1 + categoryData.words.length) % categoryData.words.length;
+            updateCategoryDisplay();
+        }
+
+        function playCategorySound() {
+            const categoryData = categoryWords[currentCategory];
+            const word = categoryData.words[currentCategoryWordIndex].word;
+            playGoogleTTS(word.toLowerCase());
+        }
+
+        // อัพเดตฟังก์ชัน goToMenu เพื่อรวม exercise7
+        function goToMenu() {
+            document.getElementById('mainMenu').classList.remove('hidden');
+            document.getElementById('exercise1').classList.add('hidden');
+            document.getElementById('exercise2').classList.add('hidden');
+            document.getElementById('exercise3').classList.add('hidden');
+            document.getElementById('exercise4').classList.add('hidden');
+            document.getElementById('exercise5').classList.add('hidden');
+            document.getElementById('exercise6').classList.add('hidden');
+            document.getElementById('exercise7').classList.add('hidden');
+        }
+
+        // Initialize
+        updatePracticeLetter();
+        updateDisplay();
+        updateDisplay2();
+    </script>
+</body>
+
+</html>
